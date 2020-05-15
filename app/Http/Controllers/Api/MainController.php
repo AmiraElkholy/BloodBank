@@ -19,8 +19,9 @@ use App\Models\Category;
 use App\Models\Setting;
 use App\Models\ContactMessage;
 use App\Models\Client;
-use App\Models\donationRequest;
+use App\Models\DonationRequest;
 use App\Models\Notification;
+use App\Models\NotificationToken;
 
 
 
@@ -196,39 +197,84 @@ class MainController extends Controller
 
 
 
-        //send notifications to suitable donors 
-        $donorIds = $donationRequest->city->governorate->clients()
-            ->whereHas('bloodTypes', function($query) use($request, $donationRequest) {
-                    $query->where('blood_types.id', $donationRequest->blood_type_id);
-            })->pluck('clients.id')->toArray();
+        /* *** send notifications to suitable donors *** */
+        //donors subscribed to the ame Governorate as the donation request    
+        $donorIds1 = $donationRequest->city->governorate->clients()->pluck('clients.id')->toArray();
+        //donors subscribed to the ame BloodType as the donation request    
+        $donorIds2 = $donationRequest->bloodType->subscriberClients()->pluck('clients.id')->toArray(); 
 
-
+        $donorIds = array_unique(array_merge($donorIds1, $donorIds2), SORT_REGULAR);
 
         if(count($donorIds)) {
-
-            $notification = $donationRequest->notification->create([
-                'title'     =>  'أحتاج متبرع لفصيلة',
-                'content'   =>  $donationRequest->BloodType->name.'محتاج متبرع بفصيلة'
+           
+            $notification = $donationRequest->notification()->create([
+                'title'     =>  'توجد حالة جديدة محتاجة للتبرع بالدم',
+                'content'   =>  $donationRequest->BloodType->name.' تحتاج متبرع بفصيلة'
             ]);
 
 
+            //attach clients to this notification
             $notification->clients()->attach($donorIds);
 
-
             //get tokens for FCM (Push Notification using Firebase cloud)
-            
+            $tokens = NotificationToken::whereIn('client_id', $donorIds)->where('token', '!=', null)->pluck('token')->toArray();
+
+
+            //dd($tokens);
+
+            if(count($tokens)) {
+
+                $title = $notification->title;
+                $body = $notification->content;
+                $data = [
+                    'donation_request_id' => $donationRequest->id
+                ];
+
+
+                $send = notifiyByFireBase($title, $body, $tokens, $data);
+
+                // info("firebase result: ".$send);
+                // info("data: ".json_encode(data));
+
+            }       
         }
 
+        return responseJson(1, 'تمت إضفة ططل تبرع جديد بنجاح',  $donationRequest);
+    }
 
 
-        return responseJson(1,'',$donorIds);
+    public function donationRequests(Request $request) {
 
+        $donationRequests = DonationRequest::where(function($query) use($request) {
+            if($request->has('blood_type_id')&$request->blood_type_id!='') {
+                $query->where('blood_type_id', $request->blood_type_id);
+            }
+            if($request->has('governorate_id')&$request->governorate_id!='') {
+                $citiesIds = Governorate::find($request->governorate_id)->cities()->pluck('id')->toArray();
+                $query->whereIn('city_id', $citiesIds);
+            }
+        })->paginate(10);
 
+        return responseJson(1, 'success', $donationRequests);
+    }
 
+    public function donationRequestDetails(Request $request) {
+        $validator = validator()->make($request->all(), ['donation_request_id' => 'integer|exists:donation_requests,id']);
+        if($validator->fails()) {
+            return responseJson(0, $validator->errors()->first(), $validator->errors());
+        }
+        $donationRequest = donationRequest::find($request->donation_request_id);
+        return responseJson(1, 'success', $donationRequest);        
     }
 
 
 
+    public function notifications(Request $request) {
+
+        $notifications = $request->user()->notifications()
+                         ->with('donationRequest')->get();
+        return responseJson(1, 'success', $notifications);
+    }
 
 
 }

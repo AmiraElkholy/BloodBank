@@ -21,7 +21,7 @@ class BloodType extends Model
         return $this->hasMany('App\Models\DonationRequest');
     }
 
-    public function subscriber_clients()
+    public function subscriberClients()
     {
         return $this->morphToMany('App\Models\Client', 'clientable');
     }

@@ -39,7 +39,7 @@ class CreateForeignKeys extends Migration {
 						->onUpdate('restrict');
 		});
 		Schema::table('notifications', function(Blueprint $table) {
-			$table->foreign('donation_request_id')->references('id')->on('donation-requests')
+			$table->foreign('donation_request_id')->references('id')->on('donation_requests')
 						->onDelete('restrict')
 						->onUpdate('restrict');
 		});
@@ -61,13 +61,13 @@ class CreateForeignKeys extends Migration {
 		Schema::table('posts', function(Blueprint $table) {
 			$table->dropForeign('posts_category_id_foreign');
 		});
-		Schema::table('donation-requests', function(Blueprint $table) {
+		Schema::table('donation_requests', function(Blueprint $table) {
 			$table->dropForeign('donation-requests_blood_type_id_foreign');
 		});
-		Schema::table('donation-requests', function(Blueprint $table) {
+		Schema::table('donation_requests', function(Blueprint $table) {
 			$table->dropForeign('donation-requests_city_id_foreign');
 		});
-		Schema::table('donation-requests', function(Blueprint $table) {
+		Schema::table('donation_requests', function(Blueprint $table) {
 			$table->dropForeign('donation-requests_client_id_foreign');
 		});
 		Schema::table('notifications', function(Blueprint $table) {

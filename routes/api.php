@@ -24,7 +24,6 @@ Route::group(['prefix' => 'v1', 'namespace' => 'Api'], function() {
 	Route::get('cities', 'MainController@cities');
 	Route::get('blood-types', 'MainController@bloodTypes');
 
-
 	
 	Route::post('register', 'AuthController@register');
 	Route::post('login', 'AuthController@login');
@@ -62,10 +61,12 @@ Route::group(['prefix' => 'v1', 'namespace' => 'Api'], function() {
 
 
 		Route::post('create-donation-request', 'MainController@createDonationRequest');
+		Route::get('donation-requests', 'MainController@donationRequests');
+		Route::get('donation-request-details', 'MainController@donationRequestDetails');
 
 
 		Route::post('register-notification-token', 'AuthController@registerNotificationToken');
-
+		Route::get('notifications', 'MainController@notifications');
 
 
 

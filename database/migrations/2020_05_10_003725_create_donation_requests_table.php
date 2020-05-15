@@ -7,7 +7,7 @@ class CreateDonationRequestsTable extends Migration {
 
 	public function up()
 	{
-		Schema::create('donation-requests', function(Blueprint $table) {
+		Schema::create('donation_requests', function(Blueprint $table) {
 			$table->increments('id');
 			$table->timestamp('created_at')->useCurrent();
             $table->timestamp('updated_at')->default(DB::raw('CURRENT_TIMESTAMP on update CURRENT_TIMESTAMP'));
@@ -28,6 +28,6 @@ class CreateDonationRequestsTable extends Migration {
 
 	public function down()
 	{
-		Schema::drop('donation-requests');
+		Schema::drop('donation_requests');
 	}
 }

@@ -61,7 +61,7 @@ class Client extends Authenticatable {
 
      public function notificationTokens()
     {
-        return $this->hasMany('App\Models\Token');
+        return $this->hasMany('App\Models\NotificationToken');
     }
 
 
