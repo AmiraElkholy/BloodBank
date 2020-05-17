@@ -39,6 +39,8 @@ Route::group(['prefix' => 'v1', 'namespace' => 'Api'], function() {
 	Route::post('remove-notification-token', 'AuthController@removeNotificationToken');
 
 
+	Route::get('test-notifications', 'MainController@testNotifications');
+
 
 
 
@@ -62,7 +64,7 @@ Route::group(['prefix' => 'v1', 'namespace' => 'Api'], function() {
 
 		Route::post('create-donation-request', 'MainController@createDonationRequest');
 		Route::get('donation-requests', 'MainController@donationRequests');
-		Route::get('donation-request-details', 'MainController@donationRequestDetails');
+		Route::get('donation-request', 'MainController@donationRequest');
 
 
 		Route::post('register-notification-token', 'AuthController@registerNotificationToken');

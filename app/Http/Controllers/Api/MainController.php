@@ -231,7 +231,7 @@ class MainController extends Controller
                 ];
 
 
-                $send = notifiyByFireBase($title, $body, $tokens, $data);
+                $send = notifyByFirebase($title, $body, $tokens, $data);
 
                 // info("firebase result: ".$send);
                 // info("data: ".json_encode(data));
@@ -258,23 +258,53 @@ class MainController extends Controller
         return responseJson(1, 'success', $donationRequests);
     }
 
-    public function donationRequestDetails(Request $request) {
+    public function donationRequest(Request $request) {
+
         $validator = validator()->make($request->all(), ['donation_request_id' => 'integer|exists:donation_requests,id']);
+
         if($validator->fails()) {
             return responseJson(0, $validator->errors()->first(), $validator->errors());
         }
+
         $donationRequest = donationRequest::find($request->donation_request_id);
+
+        if(!$donationRequest) {
+            return responseJson(0, '404 no donaion request found');
+        }
+
+        if($request->user()->notifications()->where('donation_request_id', $donationRequest->id)) {
+            $request->user()->notifications()->where('donation_request_id', $donationRequest->id)->update(['is_seen' => 1]);
+        }
+        
         return responseJson(1, 'success', $donationRequest);        
     }
 
 
 
     public function notifications(Request $request) {
-
         $notifications = $request->user()->notifications()
                          ->with('donationRequest')->get();
         return responseJson(1, 'success', $notifications);
     }
+
+
+
+    public function testNotifications(Request $request) {
+        
+         if(count($request->tokens)) {
+            $tokens = $request->tokens;
+            $title = $request->title;
+            $body = $request->content;
+            $data = [];
+            $send = notifyByFirebase($title, $body, $tokens, $data);
+            // info("firebase result: ".$send);
+            // info("data: ".json_encode(data));
+        } 
+        return responseJson(1, 'data sent' );        
+    }
+
+
+
 
 
 }

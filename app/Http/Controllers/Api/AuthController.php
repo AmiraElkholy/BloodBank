@@ -9,7 +9,7 @@ use App\Http\Controllers\Controller;
 
 use App\Models\Client;
 use App\Models\City;
-use App\Models\Token;
+use App\Models\NotificationToken;
 
 
 use Illuminate\Support\Facades\Hash;
@@ -61,8 +61,8 @@ class AuthController extends Controller
 
         /**** Initial setting of notification_settings 
         - according to chosen bloodType and governorate ****/
-        $client->bloodTypes()->attach($request->blood_type_id);
-        $client->governorates()->attach(City::where('id', $client->city_id)->first()->governorate->id);
+        // $client->bloodTypes()->attach($request->blood_type_id);
+        // $client->governorates()->attach(City::where('id', $client->city_id)->first()->governorate->id);
 
 
 
@@ -237,16 +237,16 @@ class AuthController extends Controller
         /******* Add new bloodType and new Governorate to
                 new notification settings when upateing any..
         ********/
-        if($request->has('blood_type_id')) {
-            $loginUser->bloodTypes()->detach($loginUser->blood_type_id);    
-            $loginUser->bloodTypes()->attach($loginUser->blood_type_id);    
-        }
+        // if($request->has('blood_type_id')) {
+        //     $loginUser->bloodTypes()->detach($loginUser->blood_type_id);    
+        //     $loginUser->bloodTypes()->attach($loginUser->blood_type_id);    
+        // }
 
-        if($request->has('city_id')) {
-            $governorate = City::where('id', $loginUser->city_id)->first()->governorate;
-            $loginUser->governorates()->detach($governorate->id);
-            $loginUser->governorates()->attach($governorate->id);
-        }
+        // if($request->has('city_id')) {
+        //     $governorate = City::where('id', $loginUser->city_id)->first()->governorate;
+        //     $loginUser->governorates()->detach($governorate->id);
+        //     $loginUser->governorates()->attach($governorate->id);
+        // }
 
         return responseJson(1, 'success', $loginUser);
     }
@@ -267,18 +267,17 @@ class AuthController extends Controller
         }
 
 
-        Token::where('token', $request->token)->delete();
+        NotificationToken::where('token', $request->token)->delete();
 
         $request->user()->notificationTokens()->create($request->all());
 
 
-        return responseJson(1,'مت إعداد الجهاز لاستقبال الإشعارات بنجاح');
+        return responseJson(1,'تم إعداد الجهاز لاستقبال الإشعارات بنجاح');
 
     }
 
 
     public function removeNotificationToken(Request $request) {
-
 
         $rules = [
             'token' => 'required' 
@@ -290,8 +289,7 @@ class AuthController extends Controller
             return responseJson(0, $validator->errors()->first(), $validator->errors());
         }
 
-        Token::where('token', $request->token)->delete();
-
+        NotificationToken::where('token', $request->token)->delete();
 
         return responseJson(1,'تم الحذف بنجاح');
 

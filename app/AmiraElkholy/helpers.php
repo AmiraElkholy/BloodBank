@@ -14,6 +14,7 @@ function responseJson($status, $msg, $data = null) {
  
 function notifyByFirebase($title, $body, $tokens, $data = [])
 {
+    $is_notification = true;
     $registrationIDs = $tokens;
     $fcmMsg = array(
         'body' => $body,
