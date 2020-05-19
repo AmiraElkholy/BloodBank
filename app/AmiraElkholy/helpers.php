@@ -14,8 +14,9 @@ function responseJson($status, $msg, $data = null) {
  
 function notifyByFirebase($title, $body, $tokens, $data = [])
 {
-    $is_notification = true;
+    // dd(env('FIREBASE_API_ACCESS_KEY'));
     $registrationIDs = $tokens;
+    $is_notification = true;
     $fcmMsg = array(
         'body' => $body,
         'title' => $title,
@@ -32,7 +33,7 @@ function notifyByFirebase($title, $body, $tokens, $data = [])
         $fcmFields['notification'] = $fcmMsg;
     }
     $headers = array(
-        'Authorization: key=' . env('API_ACCESS_KEY'),
+        'Authorization: key=' . env('FIREBASE_API_ACCESS_KEY'),
         'Content-Type: application/json'
     );
     $ch = curl_init();

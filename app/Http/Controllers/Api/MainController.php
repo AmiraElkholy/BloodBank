@@ -295,12 +295,15 @@ class MainController extends Controller
             $tokens = $request->tokens;
             $title = $request->title;
             $body = $request->content;
-            $data = [];
+            $data = [
+                'data' => 'test notification'
+            ];
             $send = notifyByFirebase($title, $body, $tokens, $data);
+            //dd($send);
             // info("firebase result: ".$send);
             // info("data: ".json_encode(data));
         } 
-        return responseJson(1, 'data sent' );        
+        return responseJson(1, 'data sent', $send);        
     }
 
 
@@ -308,3 +311,4 @@ class MainController extends Controller
 
 
 }
+
