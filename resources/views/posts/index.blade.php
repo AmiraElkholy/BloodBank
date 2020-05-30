@@ -3,7 +3,7 @@
 
 
 @section('page_title')
-Governorates
+Posts
 @endsection
 
 
@@ -15,7 +15,7 @@ Governorates
       <!-- Default box -->                 
          <div class="card">
             <div class="card-header">
-              <h3 class="card-title">List of all governorates</h3>
+              <h3 class="card-title">List of all posts</h3>
             </div>
             <!-- /.card-header -->
             <div class="card-body">
@@ -24,40 +24,48 @@ Governorates
               @include('flash::message')
 
               
-              <a href="{{url(route('governorate.create'))}}">
+              <a href="{{url(route('post.create'))}}">
                 <button type="button" class="btn btn-success" style="float: right; font-weight:bold;">Add   <i class="fas fa-plus"></i></button>
               </a>
 
               <br><br>
 
-            @if(count($governorates))
+            @if(count($records))
              <table id="example1" class="table table-bordered table-striped table-hover">
                 <thead>
                 <tr>
                   <th>#</th>
-                  <th>ID</th>
-                  <th>Name</th>
-                  <th>Created_at</th>
-                  <th>Updated_at</th>
-                  <th>Edit</th>
-                  <th>Delete</th>
-                  <th>Show Details</th>
+                      <th>ID</th>
+                      <th>Title</th>
+                      <th>Body</th>
+                      <th>Image</th>
+                      <th>Category</th>
+                      <th>Created_at</th>
+                      <th>Updated_at</th>
+                      <th>Edit</th>
+                      <th>Delete</th>
+                      <th>Show Details</th>
                 </tr>
                 </thead>
                 <tbody>
-                 @foreach($governorates as $governorate)
+                 @foreach($records as $record)
                   <tr>
                       <td>{{$loop->iteration}}</td>
-                      <td>{{$governorate->id}}</td>
-                      <td>{{$governorate->name}}</td>
-                      <td>{{$governorate->created_at}}</td>
-                      <td>{{$governorate->updated_at}}</td>
+                      <td>{{$record->id}}</td>
+                      <td>{{$record->title}}</td>
+                      <td>{{$record->body}}</td>
+                      <td><a  target="_blank" href="{{ URL::to('/') }}/images/{{$record->image}}" >
+                          <img src="{{ URL::to('/') }}/images/{{$record->image}}" style="max-height: 280px; max-width: 500px;">
+                      </a></td>
+                      <td>{{$record->category->name}}</td>
+                      <td>{{$record->created_at}}</td>
+                      <td>{{$record->updated_at}}</td>
                       <td class="text-center">
-                        <a href="{{url(route('governorate.edit', $governorate->id))}}" class="btn btn-info btn-xs"><i class="fas fa-edit"></i></a>
+                        <a href="{{url(route('post.edit', $record->id))}}" class="btn btn-info btn-xs"><i class="fas fa-edit"></i></a>
                       </td>
                       <td class="text-center">
                         {!! Form::open([
-                              'action' => ['GovernorateController@destroy', $governorate->id],
+                              'action' => ['PostController@destroy', $record->id],
                               'method' => 'delete'
                           ]) !!}
                         <button type="submit" class="btn btn-danger btn-xs">
@@ -67,25 +75,14 @@ Governorates
 
                       </td>
                       <td>
-                         <a href="{{url(route('governorate.show', $governorate->id))}}" class="btn btn-warning btn-xs"><i class="fas fa-list"></i></a>
+                         <a href="{{url(route('post.show', $record->id))}}" class="btn btn-warning btn-xs"><i class="fas fa-list"></i></a>
                       </td>
                   </tr>       
                   @endforeach
-                  <tfoot>
-                    <tr>
-                      <th>#</th>
-                      <th>ID</th>
-                      <th>Name</th>
-                      <th>Created_at</th>
-                      <th>Updated_at</th>
-                      <th>Edit</th>
-                      <th>Delete</th>
-                    </tr>
-                  </tfoot>
               </table>
             @else
               <div class="alert alert-danger" role="alert">
-                  No governorates to display.
+                  No cities to display.
               </div>
             @endif 
             </div>

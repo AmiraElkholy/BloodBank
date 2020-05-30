@@ -1,12 +1,10 @@
-@inject('model', 'App\Models\Governorate')
-
 
 @extends('layouts.app')
 
 
 
 @section('page_title')
-New Governorate
+Edit Governorate
 @endsection
 
 
@@ -18,19 +16,23 @@ New Governorate
       <!-- Default box -->
       <div class="card">
         <div class="card-header">
-          <h3 class="card-title">Create A New Governorate</h3>
+          <h3 class="card-title">Edit Governorate</h3>
         </div>
 
         <div class="card-body">
-           
-          @include('_partials.errors')
-        
 
-           {!! Form::model($model, [
-            'action' => 'GovernorateController@store'
+          @include('_partials.errors')
+
+          @include('flash::message')
+
+        
+          {!! Form::model($governorate, [
+            'action' => ['GovernorateController@update', $governorate->id],
+            'method' => 'PUT',
+
           ])!!}
 
-          @include('governorates.form')
+              @include('governorates.form')
 
 
           {!! Form::close() !!}
@@ -41,10 +43,10 @@ New Governorate
       </div>
       <!-- /.card -->
 
-
       <div class="text-right back-btn">
         <a href="{{ url()->previous() }}" class="btn btn-primary"><i class="fas fa-arrow-left"></i> &nbsp;Back &nbsp;</a>
       </div>  
+
 
     </section>
     <!-- /.content -->

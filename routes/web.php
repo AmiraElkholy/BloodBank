@@ -20,4 +20,11 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 
 
-Route::resource('governorate', 'GovernorateController');
+
+Route::group(['middleware' => ['auth'], 'prefix' => 'dashboard'], function () { 
+    Route::resource('governorate', 'GovernorateController');
+    Route::resource('city', 'CityController');
+    Route::resource('category', 'CategoryController');
+    Route::resource('post', 'PostController');
+    Route::resource('client', 'ClientController');
+});

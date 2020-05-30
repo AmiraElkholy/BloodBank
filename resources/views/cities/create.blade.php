@@ -1,4 +1,4 @@
-@inject('model', 'App\Models\Governorate')
+@inject('model', 'App\Models\City')
 
 
 @extends('layouts.app')
@@ -6,7 +6,7 @@
 
 
 @section('page_title')
-New Governorate
+New City
 @endsection
 
 
@@ -18,7 +18,7 @@ New Governorate
       <!-- Default box -->
       <div class="card">
         <div class="card-header">
-          <h3 class="card-title">Create A New Governorate</h3>
+          <h3 class="card-title">Create A New City</h3>
         </div>
 
         <div class="card-body">
@@ -27,10 +27,10 @@ New Governorate
         
 
            {!! Form::model($model, [
-            'action' => 'GovernorateController@store'
+            'action' => 'CityController@store'
           ])!!}
 
-          @include('governorates.form')
+          @include('cities.form')
 
 
           {!! Form::close() !!}
@@ -50,3 +50,4 @@ New Governorate
     <!-- /.content -->
 
 @endsection
+

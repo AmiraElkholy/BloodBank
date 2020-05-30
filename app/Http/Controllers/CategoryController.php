@@ -4,10 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+use App\Models\Category;
 
-use App\Models\Governorate;
-
-class GovernorateController extends Controller
+class CategoryController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,8 +15,8 @@ class GovernorateController extends Controller
      */
     public function index()
     {
-        $governorates = Governorate::all();
-        return view('governorates.index', ['governorates' => $governorates]);
+        $records = Category::all();
+        return view('categories.index', ['records' => $records]);
     }
 
     /**
@@ -27,7 +26,7 @@ class GovernorateController extends Controller
      */
     public function create()
     {
-        return view('governorates.create');
+        return view('categories.create');
     }
 
     /**
@@ -40,19 +39,19 @@ class GovernorateController extends Controller
     {
         // dd($request->all());
         $rules = [
-            'name' => 'required|min:2|unique:governorates,name'
+            'name' => 'required|min:3|unique:categories,name'
         ];
         $messages = [
             'name.required' => 'Name is required',
-            'name.unique'   => 'The governorate has already been added'
+            'name.unique'   => 'The category has already been added'
         ];
         $this->validate($request, $rules, $messages);
 
-        $governorate = Governorate::create($request->all());
+        $category = Category::create($request->all());
 
-        flash()->success('New governorate is saved successfully.');
+        flash()->success('New category is saved successfully.');
 
-        return redirect(route('governorate.index'));
+        return redirect(route('category.index'));
     }
 
     /**
@@ -63,8 +62,8 @@ class GovernorateController extends Controller
      */
     public function show($id)
     {
-        $governorate = Governorate::findOrFail($id);
-        return view('governorates.show', ['governorate' => $governorate]);
+        $record = Category::findOrFail($id);
+        return view('categories.show', ['record' => $record]);
     }
 
     /**
@@ -75,8 +74,8 @@ class GovernorateController extends Controller
      */
     public function edit($id)
     {
-        $governorate = Governorate::findOrFail($id);
-        return view('governorates.edit', ['governorate' => $governorate]);
+        $record = Category::findOrFail($id);
+        return view('categories.edit', ['record' => $record]);
     }
 
     /**
@@ -89,18 +88,18 @@ class GovernorateController extends Controller
     public function update(Request $request, $id)
     {
         $rules = [
-            'name' => 'required|min:2'
+            'name' => 'required|min:3'        
         ];
 
         $this->validate($request, $rules);
 
-        $governorate = Governorate::findOrFail($id);
+        $record = Category::findOrFail($id);
 
-        $governorate->update($request->all());
+        $record->update($request->all());
 
-        flash()->success('Governorate is updated successfully');
+        flash()->success('Category is updated successfully');
 
-        return redirect(route('governorate.index'));
+        return redirect(route('category.index'));
 
         // return back();
     }
@@ -113,14 +112,13 @@ class GovernorateController extends Controller
      */
     public function destroy($id)
     {
-        $governorate = Governorate::findOrFail($id);
-        if($governorate->cities()->count()) {
-            flash()->error("Governorate can't be deleted. There are related cities.");
+        $record = Category::findOrFail($id);
+        if($record->posts()->count()) {
+            flash()->error("Category can't be deleted. There are related posts.");
         }
         else {
-            $governorate->delete();
-            flash()->warning('Governorate deleted successfully.');
+            $record->delete();
+            flash()->warning('Category deleted successfully.');
         }
-        return redirect(route('governorate.index'));
-    }
+        return redirect(route('category.index'));    }
 }

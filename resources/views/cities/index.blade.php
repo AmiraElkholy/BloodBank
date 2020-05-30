@@ -3,7 +3,7 @@
 
 
 @section('page_title')
-Governorates
+Cities
 @endsection
 
 
@@ -15,7 +15,7 @@ Governorates
       <!-- Default box -->                 
          <div class="card">
             <div class="card-header">
-              <h3 class="card-title">List of all governorates</h3>
+              <h3 class="card-title">List of all cities</h3>
             </div>
             <!-- /.card-header -->
             <div class="card-body">
@@ -24,19 +24,20 @@ Governorates
               @include('flash::message')
 
               
-              <a href="{{url(route('governorate.create'))}}">
+              <a href="{{url(route('city.create'))}}">
                 <button type="button" class="btn btn-success" style="float: right; font-weight:bold;">Add   <i class="fas fa-plus"></i></button>
               </a>
 
               <br><br>
 
-            @if(count($governorates))
+            @if(count($cities))
              <table id="example1" class="table table-bordered table-striped table-hover">
                 <thead>
                 <tr>
                   <th>#</th>
                   <th>ID</th>
                   <th>Name</th>
+                  <th>Governorate</th>
                   <th>Created_at</th>
                   <th>Updated_at</th>
                   <th>Edit</th>
@@ -45,19 +46,20 @@ Governorates
                 </tr>
                 </thead>
                 <tbody>
-                 @foreach($governorates as $governorate)
+                 @foreach($cities as $city)
                   <tr>
                       <td>{{$loop->iteration}}</td>
-                      <td>{{$governorate->id}}</td>
-                      <td>{{$governorate->name}}</td>
-                      <td>{{$governorate->created_at}}</td>
-                      <td>{{$governorate->updated_at}}</td>
+                      <td>{{$city->id}}</td>
+                      <td>{{$city->name}}</td>
+                      <td>{{$city->governorate->name}}</td>
+                      <td>{{$city->created_at}}</td>
+                      <td>{{$city->updated_at}}</td>
                       <td class="text-center">
-                        <a href="{{url(route('governorate.edit', $governorate->id))}}" class="btn btn-info btn-xs"><i class="fas fa-edit"></i></a>
+                        <a href="{{url(route('city.edit', $city->id))}}" class="btn btn-info btn-xs"><i class="fas fa-edit"></i></a>
                       </td>
                       <td class="text-center">
                         {!! Form::open([
-                              'action' => ['GovernorateController@destroy', $governorate->id],
+                              'action' => ['CityController@destroy', $city->id],
                               'method' => 'delete'
                           ]) !!}
                         <button type="submit" class="btn btn-danger btn-xs">
@@ -67,7 +69,7 @@ Governorates
 
                       </td>
                       <td>
-                         <a href="{{url(route('governorate.show', $governorate->id))}}" class="btn btn-warning btn-xs"><i class="fas fa-list"></i></a>
+                         <a href="{{url(route('city.show', $city->id))}}" class="btn btn-warning btn-xs"><i class="fas fa-list"></i></a>
                       </td>
                   </tr>       
                   @endforeach
@@ -76,6 +78,7 @@ Governorates
                       <th>#</th>
                       <th>ID</th>
                       <th>Name</th>
+                      <th>Governorate</th>
                       <th>Created_at</th>
                       <th>Updated_at</th>
                       <th>Edit</th>
@@ -85,7 +88,7 @@ Governorates
               </table>
             @else
               <div class="alert alert-danger" role="alert">
-                  No governorates to display.
+                  No cities to display.
               </div>
             @endif 
             </div>

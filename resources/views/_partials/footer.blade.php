@@ -32,15 +32,17 @@
     $("#example1").DataTable({
       "responsive": true,
       "autoWidth": false,
+      "scrollX": true, 
     });
     $('#example2').DataTable({
-      "paging": true,
+      "paging": false,
       "lengthChange": false,
       "searching": false,
-      "ordering": true,
+      "ordering": false,
       "info": true,
       "autoWidth": false,
       "responsive": true,
+      "scrollX": true,
     });
   });
 </script>

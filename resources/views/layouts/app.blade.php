@@ -1,9 +1,9 @@
   
 
-  @include('layouts._partials.header')
+  @include('_partials.header')
 
  
-  @include('layouts._partials.sidebar')
+  @include('_partials.sidebar')
 
 
   <!-- Content Wrapper. Contains page content -->
@@ -36,4 +36,4 @@
 
 
 
-  @include('layouts._partials.footer')
+  @include('_partials.footer')

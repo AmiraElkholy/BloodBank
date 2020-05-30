@@ -15,39 +15,29 @@ Governorates
       <!-- Default box -->                 
          <div class="card">
             <div class="card-header">
-              <h3 class="card-title">List of all governorates</h3>
+              <h3 class="card-title">Governorate Details of "{{$governorate->name}}" Governorate</h3>
             </div>
             <!-- /.card-header -->
             <div class="card-body">
 
 
               @include('flash::message')
-
-              
-              <a href="{{url(route('governorate.create'))}}">
-                <button type="button" class="btn btn-success" style="float: right; font-weight:bold;">Add   <i class="fas fa-plus"></i></button>
-              </a>
-
               <br><br>
 
-            @if(count($governorates))
-             <table id="example1" class="table table-bordered table-striped table-hover">
+            @if($governorate)
+             <table class="table table-bordered table-striped table-hover">
                 <thead>
                 <tr>
-                  <th>#</th>
                   <th>ID</th>
                   <th>Name</th>
                   <th>Created_at</th>
                   <th>Updated_at</th>
                   <th>Edit</th>
                   <th>Delete</th>
-                  <th>Show Details</th>
                 </tr>
                 </thead>
                 <tbody>
-                 @foreach($governorates as $governorate)
                   <tr>
-                      <td>{{$loop->iteration}}</td>
                       <td>{{$governorate->id}}</td>
                       <td>{{$governorate->name}}</td>
                       <td>{{$governorate->created_at}}</td>
@@ -66,31 +56,19 @@ Governorates
                         {!! Form::close() !!}
 
                       </td>
-                      <td>
-                         <a href="{{url(route('governorate.show', $governorate->id))}}" class="btn btn-warning btn-xs"><i class="fas fa-list"></i></a>
-                      </td>
-                  </tr>       
-                  @endforeach
-                  <tfoot>
-                    <tr>
-                      <th>#</th>
-                      <th>ID</th>
-                      <th>Name</th>
-                      <th>Created_at</th>
-                      <th>Updated_at</th>
-                      <th>Edit</th>
-                      <th>Delete</th>
-                    </tr>
-                  </tfoot>
-              </table>
-            @else
-              <div class="alert alert-danger" role="alert">
-                  No governorates to display.
-              </div>
-            @endif 
+                  </tr>  
+              </table> 
+
+              @endif
+
             </div>
             <!-- /.card-body -->
           </div>
+
+
+      <div class="text-right back-btn ">
+        <a href="{{ url()->previous() }}" class="btn btn-primary"><i class="fas fa-arrow-left"></i> &nbsp;Back &nbsp;</a>
+      </div>   
 
     </section>
     <!-- /.content -->
