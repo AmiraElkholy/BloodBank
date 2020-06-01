@@ -198,9 +198,9 @@ class MainController extends Controller
 
 
         /* *** send notifications to suitable donors *** */
-        //donors subscribed to the ame Governorate as the donation request    
+        //donors subscribed to the same Governorate as the donation request    
         $donorIds1 = $donationRequest->city->governorate->clients()->pluck('clients.id')->toArray();
-        //donors subscribed to the ame BloodType as the donation request    
+        //donors subscribed to the same BloodType as the donation request    
         $donorIds2 = $donationRequest->bloodType->subscriberClients()->pluck('clients.id')->toArray(); 
 
         $donorIds = array_unique(array_merge($donorIds1, $donorIds2), SORT_REGULAR);

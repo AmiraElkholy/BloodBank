@@ -88,21 +88,21 @@
             </a>
           </li>
           <li class="nav-item">
-            <a href="{{route('client.index')}}" class="nav-link">
-              <i class="nav-icon fas fa-users"></i>
-              <p>Clients</p>
+            <a href="{{route('contact-message.index')}}" class="nav-link">
+              <i class="nav-icon fas fa-envelope"></i>
+              <p>Contact Messages</p>
             </a>
           </li>
           <li class="nav-item">
-            <a href="{{route('client.index')}}" class="nav-link">
-              <i class="nav-icon fas fa-users"></i>
-              <p>Clients</p>
+            <a href="{{route('donation-request.index')}}" class="nav-link">
+              <i class="nav-icon fas fa-tint"></i>
+              <p>Donation Requests</p>
             </a>
           </li>
           <li class="nav-item">
-            <a href="{{route('client.index')}}" class="nav-link">
-              <i class="nav-icon fas fa-users"></i>
-              <p>Clients</p>
+            <a href="{{route('setting.index')}}" class="nav-link">
+              <i class="nav-icon fas fa-address-card"></i>
+              <p>Settings</p>
             </a>
           </li>
 

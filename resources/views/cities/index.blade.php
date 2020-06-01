@@ -73,18 +73,6 @@ Cities
                       </td>
                   </tr>       
                   @endforeach
-                  <tfoot>
-                    <tr>
-                      <th>#</th>
-                      <th>ID</th>
-                      <th>Name</th>
-                      <th>Governorate</th>
-                      <th>Created_at</th>
-                      <th>Updated_at</th>
-                      <th>Edit</th>
-                      <th>Delete</th>
-                    </tr>
-                  </tfoot>
               </table>
             @else
               <div class="alert alert-danger" role="alert">

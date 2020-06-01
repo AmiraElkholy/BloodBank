@@ -18,7 +18,7 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
-
+Route::get('/dashboard', 'HomeController@index');
 
 
 Route::group(['middleware' => ['auth'], 'prefix' => 'dashboard'], function () { 
@@ -27,4 +27,10 @@ Route::group(['middleware' => ['auth'], 'prefix' => 'dashboard'], function () {
     Route::resource('category', 'CategoryController');
     Route::resource('post', 'PostController');
     Route::resource('client', 'ClientController');
+    Route::get('toggle-activation/{id}', 'ClientController@toggleActivation')->name('client.toggleActivation');
+    Route::resource('contact-message', 'ContactMessageController');
+    Route::resource('donation-request', 'DonationRequestController');
+    Route::resource('setting', 'SettingController');
+
+   
 });

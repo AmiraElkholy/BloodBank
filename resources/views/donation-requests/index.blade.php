@@ -3,7 +3,7 @@
 
 
 @section('page_title')
-Categories
+Donation Requests
 @endsection
 
 
@@ -15,7 +15,7 @@ Categories
       <!-- Default box -->                 
          <div class="card">
             <div class="card-header">
-              <h3 class="card-title">List of all categories</h3>
+              <h3 class="card-title">List of all donation requests</h3>
             </div>
             <!-- /.card-header -->
             <div class="card-body">
@@ -23,12 +23,6 @@ Categories
 
               @include('flash::message')
 
-              
-              <a href="{{url(route('category.create'))}}">
-                <button type="button" class="btn btn-success" style="float: right; font-weight:bold;">Add   <i class="fas fa-plus"></i></button>
-              </a>
-
-              <br><br>
 
             @if(count($records))
              <table id="example1" class="table table-bordered table-striped table-hover">
@@ -36,10 +30,19 @@ Categories
                 <tr>
                   <th>#</th>
                   <th>ID</th>
-                  <th>Name</th>
+                  <th>Patient Name</th>
+                  <th>Patient Phone</th>
+                  <th>Patient Age</th>
+                  <th>Blood Type</th>
+                  <th>Num. of Bags</th>
+                  <th>Hospital Name</th>
+                  <th>City</th>
+                  <th>Hospital Address</th>
+                  <th>Notes</th>
+                  <th>Latitude</th>
+                  <th>Longitude</th>
+                  <th>Client</th>
                   <th>Created_at</th>
-                  <th>Updated_at</th>
-                  <th>Edit</th>
                   <th>Delete</th>
                   <th>Show Details</th>
                 </tr>
@@ -49,15 +52,25 @@ Categories
                   <tr>
                       <td>{{$loop->iteration}}</td>
                       <td>{{$record->id}}</td>
-                      <td>{{$record->name}}</td>
-                      <td>{{$record->created_at}}</td>
-                      <td>{{$record->updated_at}}</td>
-                      <td class="text-center">
-                        <a href="{{url(route('category.edit', $record->id))}}" class="btn btn-info btn-xs"><i class="fas fa-edit"></i></a>
+                      <td>{{$record->patient_name}}</td>
+                      <td>{{$record->patient_phone}}</td>
+                      <td>{{$record->paient_age}}</td>
+                      <td>{{$record->bloodType->name}}</td>
+                      <td>{{$record->number_of_bags}}</td>
+                      <td>{{$record->hospital_name}}</td>
+                      <td>{{$record->city->name}}</td>
+                      <td>{{$record->hospital_address}}</td>
+                      <td>{{$record->notes}}</td>
+                      <td>{{$record->latitude}}</td>
+                      <td>{{$record->longitude}}</td>
+                      <td>
+                        <a href="{{url(route('client.show', $record->client_id))}}" class="btn btn-info">
+                         <i class="fas fa-user-injured"></i> &nbsp; {{$record->client->name}} </a>
                       </td>
+                      <td>{{$record->created_at}}</td>
                       <td class="text-center">
                         {!! Form::open([
-                              'action' => ['CategoryController@destroy', $record->id],
+                              'action' => ['DonationRequestController@destroy', $record->id],
                               'method' => 'delete'
                           ]) !!}
                         <button type="submit" class="btn btn-danger btn-xs">
@@ -66,14 +79,14 @@ Categories
                         {!! Form::close() !!}
                       </td>
                       <td>
-                         <a href="{{url(route('category.show', $record->id))}}" class="btn btn-warning btn-xs"><i class="fas fa-list"></i></a>
+                         <a href="{{url(route('donation-request.show', $record->id))}}" class="btn btn-warning btn-xs"><i class="fas fa-list"></i></a>
                       </td>
                   </tr>       
                   @endforeach
               </table>
             @else
               <div class="alert alert-danger" role="alert">
-                  No categories to display.
+                  No donation requests to display.
               </div>
             @endif 
             </div>

@@ -24,7 +24,12 @@
       .back-btn {
         padding-bottom: 40px;
       }
-
+      .activated {
+        background-color: #c3f6c3;
+      }
+      .de-activated {
+        background-color: grey;
+      }
   </style>
 </head>
 <body class="hold-transition sidebar-mini">

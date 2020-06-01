@@ -120,5 +120,6 @@ class CategoryController extends Controller
             $record->delete();
             flash()->warning('Category deleted successfully.');
         }
-        return redirect(route('category.index'));    }
+        return redirect(route('category.index'));    
+    }
 }

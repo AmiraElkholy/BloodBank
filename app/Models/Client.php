@@ -59,7 +59,7 @@ class Client extends Authenticatable {
         return $this->morphedByMany('App\Models\Governorate', 'clientable');
     }
 
-     public function notificationTokens()
+    public function notificationTokens()
     {
         return $this->hasMany('App\Models\NotificationToken');
     }
