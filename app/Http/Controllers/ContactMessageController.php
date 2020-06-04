@@ -86,6 +86,6 @@ class ContactMessageController extends Controller
         $record = ContactMessage::findOrFail($id);
         $record->delete();
         flash()->warning('Contact message has been successfully deleted.');
-        return redirect(route('contact-message.index'));    
+        return redirect(route('contact-messages.index'));    
     }
 }

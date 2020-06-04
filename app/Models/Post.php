@@ -4,14 +4,29 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
+use URL;
+
+use Carbon;
+
 class Post extends Model 
 {
 
     protected $table = 'posts';
     public $timestamps = true;
-    protected $fillable = array('title', 'body', 'image', 'category_id');
-    protected $appends = array('full_thumbnail_path');
-        // , 'is_favourite');
+    protected $fillable = array('title', 'body', 'image', 'category_id', 'publish_date');
+    //for api
+    protected $appends = array('full_thumbnail_path', 'is_favourite');
+
+
+
+
+
+    //********** Mutator ********/
+    public function setPublishDate($value) {
+        $this->attributes['publish_date'] = $value.toDateString();
+    }
+
+
 
     public function clients()
     {
@@ -24,15 +39,15 @@ class Post extends Model
     }
 
 
-
-    //********** Accessors & Mutators ********//
+    //********** Accessors ********/
 
     public function getFullThumbnailPathAttribute() {
-        return asset($this->image);
+        return URL::to('/').'/images/'.$this->image;
     }
 
-    // public function getIsFavouriteAttribute() {
-    //     return 
-    // }
+    public function getIsFavouriteAttribute() {
+        return auth()->user()->posts->contains($this);
+    }
+
 
 }

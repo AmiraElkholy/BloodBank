@@ -24,7 +24,7 @@ Categories
               @include('flash::message')
 
               
-              <a href="{{url(route('category.create'))}}">
+              <a href="{{url(route('categories.create'))}}">
                 <button type="button" class="btn btn-success" style="float: right; font-weight:bold;">Add   <i class="fas fa-plus"></i></button>
               </a>
 
@@ -53,7 +53,7 @@ Categories
                       <td>{{$record->created_at}}</td>
                       <td>{{$record->updated_at}}</td>
                       <td class="text-center">
-                        <a href="{{url(route('category.edit', $record->id))}}" class="btn btn-info btn-xs"><i class="fas fa-edit"></i></a>
+                        <a href="{{url(route('categories.edit', $record->id))}}" class="btn btn-info btn-xs"><i class="fas fa-edit"></i></a>
                       </td>
                       <td class="text-center">
                         {!! Form::open([
@@ -66,7 +66,7 @@ Categories
                         {!! Form::close() !!}
                       </td>
                       <td>
-                         <a href="{{url(route('category.show', $record->id))}}" class="btn btn-warning btn-xs"><i class="fas fa-list"></i></a>
+                         <a href="{{url(route('categories.show', $record->id))}}" class="btn btn-warning btn-xs"><i class="fas fa-list"></i></a>
                       </td>
                   </tr>       
                   @endforeach

@@ -20,44 +20,66 @@ class Client extends Authenticatable {
 
 
     protected $table = 'clients';
+    
+
+    protected $guard = ['api', 'client-web'];
+
+
     public $timestamps = true;
-    protected $fillable = array('phone', 'password', 'name', 'email', 'date_of_birth', 'blood_type_id', 'last_donation_date', 'city_id', 'pin_code');
-    protected $hidden = array('password', 'api_token', 'pin_code');
+
+    
+    protected $fillable = [
+        'phone', 'password', 'name', 'email', 'date_of_birth', 'blood_type_id', 'last_donation_date', 'city_id', 'pin_code'
+    ];
+
+    
+    protected $hidden = [
+        'password', 'api_token', 'pin_code', 'remember_token', 
+    ];
+
+
 
     public function bloodType()
     {
         return $this->belongsTo('App\Models\BloodType');
     }
 
+
     public function city()
     {
         return $this->belongsTo('App\Models\City');
     }
+
 
     public function posts()
     {
         return $this->morphedByMany('App\Models\Post', 'clientable');
     }
 
+
     public function donationRequests()
     {
         return $this->hasMany('App\Models\DonationRequest');
     }
+
 
     public function notifications()
     {
         return $this->morphedByMany('App\Models\Notification', 'clientable');
     }
 
+
     public function bloodTypes()
     {
         return $this->morphedByMany('App\Models\BloodType', 'clientable');
     }
 
+
     public function governorates()
     {
         return $this->morphedByMany('App\Models\Governorate', 'clientable');
     }
+
 
     public function notificationTokens()
     {

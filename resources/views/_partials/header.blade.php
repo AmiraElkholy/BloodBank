@@ -20,6 +20,7 @@
   <link rel="stylesheet" href="{{asset('adminlte/css/adminlte.min.css')}}">
   <!-- Google Font: Source Sans Pro -->
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+  @stack('styles')
   <style type="text/css">
       .back-btn {
         padding-bottom: 40px;
@@ -49,18 +50,21 @@
 
     <!-- Right navbar links -->
     <ul class="navbar-nav ml-auto">
-      <li class="nav-item">
+        @if(Auth::user())
+      <li class="nav-item">  
             <a class="nav-link" href="{{ route('logout') }}"
                 onclick="event.preventDefault();
                         document.getElementById('logout-form').submit();">
                 Logout
             </a>
+          
 
             <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                 {{ csrf_field() }}
             </form>
 
       </li>
+      @endif
       <li class="nav-item">
         <a class="nav-link" data-widget="control-sidebar" data-slide="true" href="#" role="button">
           <i class="fas fa-th-large"></i>

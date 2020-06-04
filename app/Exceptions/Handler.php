@@ -70,9 +70,29 @@ class Handler extends ExceptionHandler
      */
     protected function unauthenticated($request, AuthenticationException $exception)
     {
+
+        $guard = array_get($exception->guards(), 0);
+
+        switch ($guard) {
+            case 'web':
+                $login = 'login';
+                break;
+            
+            //client-web guard
+            default:
+                $login = 'clientsLogin';
+                break;
+        }
+
+        // dd($login);
+
+
         return $request->is('api/*')
             ? responseJson(0,'Unauthenticated.')
-            : redirect()->guest($exception->redirectTo() ?? route('login'));
+            : redirect()->guest(route($login));
+
+
+
     }
 
 

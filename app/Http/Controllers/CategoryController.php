@@ -41,17 +41,14 @@ class CategoryController extends Controller
         $rules = [
             'name' => 'required|min:3|unique:categories,name'
         ];
-        $messages = [
-            'name.required' => 'Name is required',
-            'name.unique'   => 'The category has already been added'
-        ];
-        $this->validate($request, $rules, $messages);
 
-        $category = Category::create($request->all());
+        $this->validate($request, $rules);
+
+        $record = Category::create($request->all());
 
         flash()->success('New category is saved successfully.');
 
-        return redirect(route('category.index'));
+        return redirect(route('categories.index'));
     }
 
     /**
@@ -88,7 +85,7 @@ class CategoryController extends Controller
     public function update(Request $request, $id)
     {
         $rules = [
-            'name' => 'required|min:3'        
+            'name' => 'required|min:3|unique:categories,name,'.$id        
         ];
 
         $this->validate($request, $rules);
@@ -99,7 +96,7 @@ class CategoryController extends Controller
 
         flash()->success('Category is updated successfully');
 
-        return redirect(route('category.index'));
+        return redirect(route('categories.index'));
 
         // return back();
     }
@@ -120,6 +117,6 @@ class CategoryController extends Controller
             $record->delete();
             flash()->warning('Category deleted successfully.');
         }
-        return redirect(route('category.index'));    
+        return redirect(route('categories.index'));    
     }
 }

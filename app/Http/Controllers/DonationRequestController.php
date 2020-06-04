@@ -113,12 +113,12 @@ class DonationRequestController extends Controller
             
             flash()->error('Something went wrong, donation request wasn\'t not deleted.)');
 
-            return redirect(route('donation-request.index'));
+            return redirect(route('donation-requests.index'));
         }
 
 
 
         flash()->warning('Donation request has been successfully deleted.');
-        return redirect(route('donation-request.index'));
+        return redirect(route('donation-requests.index'));
     }
 }

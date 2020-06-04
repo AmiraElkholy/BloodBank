@@ -39,7 +39,7 @@ class AuthController extends Controller
     		'last_donation_date'  =>  'required|date_format:Y-n-j|before_or_equal:today',
     		'city_id' 			  =>  'required|integer|exists:cities,id',
     		'phone' 			  =>  'required|unique:clients|regex:/(01)[0-9]{9}/|size:11',
-    		'password' 			  =>  'required|confirmed'
+    		'password' 			  =>  'required|confirmed|min:6'
     	];
 
     	$validator = validator()->make($request->all(), $rules);

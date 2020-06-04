@@ -24,7 +24,7 @@ Cities
               @include('flash::message')
 
               
-              <a href="{{url(route('city.create'))}}">
+              <a href="{{url(route('cities.create'))}}">
                 <button type="button" class="btn btn-success" style="float: right; font-weight:bold;">Add   <i class="fas fa-plus"></i></button>
               </a>
 
@@ -55,7 +55,7 @@ Cities
                       <td>{{$city->created_at}}</td>
                       <td>{{$city->updated_at}}</td>
                       <td class="text-center">
-                        <a href="{{url(route('city.edit', $city->id))}}" class="btn btn-info btn-xs"><i class="fas fa-edit"></i></a>
+                        <a href="{{url(route('cities.edit', $city->id))}}" class="btn btn-info btn-xs"><i class="fas fa-edit"></i></a>
                       </td>
                       <td class="text-center">
                         {!! Form::open([
@@ -69,7 +69,7 @@ Cities
 
                       </td>
                       <td>
-                         <a href="{{url(route('city.show', $city->id))}}" class="btn btn-warning btn-xs"><i class="fas fa-list"></i></a>
+                         <a href="{{url(route('cities.show', $city->id))}}" class="btn btn-warning btn-xs"><i class="fas fa-list"></i></a>
                       </td>
                   </tr>       
                   @endforeach

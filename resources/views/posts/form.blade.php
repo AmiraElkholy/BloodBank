@@ -31,6 +31,13 @@
             {!! Form::select('category_id', $availableCategories, null, ['class' => 'form-control'])  !!}
           </div>
 
+          <div class="form-group">
+            <label for="publish_date">Publish Date: </label>
+            {!! Form::date('publish_date', null, [
+                'class' => 'form-control'
+            ])  !!}
+          </div>
+
 
 
 

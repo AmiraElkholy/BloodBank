@@ -50,7 +50,8 @@ class PostController extends Controller
             'title' => 'required|min:2|unique:posts,title',
             'body'  => 'required|min:10',
             'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-            'category_id' => 'required|integer|exists:categories,id'
+            'category_id' => 'required|integer|exists:categories,id',
+            'publish_date' => 'required'
         ];
 
         $this->validate($request, $rules);
@@ -68,7 +69,7 @@ class PostController extends Controller
 
         flash()->success('New post is saved successfully.');
 
-        return redirect(route('post.index'));
+        return redirect(route('posts.index'));
     }
 
     /**
@@ -113,9 +114,10 @@ class PostController extends Controller
     public function update(Request $request, $id)
     {
         $rules = [
-            'title' => 'required|min:3',
+            'title' => 'required|min:3|unique:posts,title,'.$id,
             'body'  => 'required|min:10',
-            'category_id' => 'required|integer|exists:categories,id'
+            'category_id' => 'required|integer|exists:categories,id',
+            'publish_date' => 'required'
         ];
 
         $this->validate($request, $rules);
@@ -164,6 +166,6 @@ class PostController extends Controller
         $record = Post::findOrFail($id);
         $record->delete();
         flash()->warning('Post has been successfully deleted.');
-        return redirect(route('post.index'));    
+        return redirect(route('posts.index'));    
     }
 }

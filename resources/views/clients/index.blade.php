@@ -61,7 +61,7 @@ Clients
                       <td>{{$record->created_at}}</td>
                       <td>{{$record->updated_at}}</td>
                       <td class="text-center">
-                        <a href="{{url(route('client.toggleActivation', $record->id))}}" class="btn btn-info btn-xs"><i class="fas fa-edit"></i></a>
+                        <a href="{{url(route('clients.toggleActivation', $record->id))}}" class="btn btn-info btn-xs"><i class="fas fa-edit"></i></a>
                       </td>
                       <td class="text-center">
                         {!! Form::open([
@@ -74,7 +74,7 @@ Clients
                         {!! Form::close() !!}
                       </td>
                       <td>
-                         <a href="{{url(route('client.show', $record->id))}}" class="btn btn-warning btn-xs"><i class="fas fa-list"></i></a>
+                         <a href="{{url(route('clients.show', $record->id))}}" class="btn btn-warning btn-xs"><i class="fas fa-list"></i></a>
                       </td>
                   </tr>       
                   @endforeach

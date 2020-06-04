@@ -60,7 +60,7 @@ Donation Request Details
                       <td>{{$record->latitude}}</td>
                       <td>{{$record->longitude}}</td>
                       <td>
-                        <a href="{{url(route('client.show', $record->client_id))}}" class="btn btn-info">
+                        <a href="{{url(route('clients.show', $record->client_id))}}" class="btn btn-info">
                          <i class="fas fa-user-injured"></i> &nbsp; {{$record->client->name}} </a>
                       </td>
                       <td>{{$record->created_at}}</td>

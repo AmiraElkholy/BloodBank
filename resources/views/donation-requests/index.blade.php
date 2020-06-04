@@ -64,7 +64,7 @@ Donation Requests
                       <td>{{$record->latitude}}</td>
                       <td>{{$record->longitude}}</td>
                       <td>
-                        <a href="{{url(route('client.show', $record->client_id))}}" class="btn btn-info">
+                        <a href="{{url(route('clients.show', $record->client_id))}}" class="btn btn-info">
                          <i class="fas fa-user-injured"></i> &nbsp; {{$record->client->name}} </a>
                       </td>
                       <td>{{$record->created_at}}</td>
@@ -79,7 +79,7 @@ Donation Requests
                         {!! Form::close() !!}
                       </td>
                       <td>
-                         <a href="{{url(route('donation-request.show', $record->id))}}" class="btn btn-warning btn-xs"><i class="fas fa-list"></i></a>
+                         <a href="{{url(route('donation-requests.show', $record->id))}}" class="btn btn-warning btn-xs"><i class="fas fa-list"></i></a>
                       </td>
                   </tr>       
                   @endforeach

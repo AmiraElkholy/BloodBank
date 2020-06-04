@@ -43,7 +43,7 @@ Governorates
                       <td>{{$governorate->created_at}}</td>
                       <td>{{$governorate->updated_at}}</td>
                       <td class="text-center">
-                        <a href="{{url(route('governorate.edit', $governorate->id))}}" class="btn btn-info btn-xs"><i class="fas fa-edit"></i></a>
+                        <a href="{{url(route('governorates.edit', $governorate->id))}}" class="btn btn-info btn-xs"><i class="fas fa-edit"></i></a>
                       </td>
                       <td class="text-center">
                         {!! Form::open([

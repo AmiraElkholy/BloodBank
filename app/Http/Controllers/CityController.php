@@ -57,7 +57,7 @@ class CityController extends Controller
 
         flash()->success('New city is saved successfully.');
 
-        return redirect(route('city.index'));
+        return redirect(route('cities.index'));
     }
 
     /**
@@ -101,7 +101,7 @@ class CityController extends Controller
     public function update(Request $request, $id)
     {
         $rules = [
-            'name' => 'required|min:2',
+            'name' => 'required|min:2|unique:cities,name,'.$id,
             'governorate_id' => 'required|integer|exists:governorates,id'
         ];
 
@@ -127,6 +127,6 @@ class CityController extends Controller
         $city = City::findOrFail($id);
         $city->delete();
         flash()->warning('City deleted successfully.');
-        return redirect(route('city.index'));
+        return redirect(route('cities.index'));
     }
 }

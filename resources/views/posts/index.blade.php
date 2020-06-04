@@ -24,7 +24,7 @@ Posts
               @include('flash::message')
 
               
-              <a href="{{url(route('post.create'))}}">
+              <a href="{{url(route('posts.create'))}}">
                 <button type="button" class="btn btn-success" style="float: right; font-weight:bold;">Add   <i class="fas fa-plus"></i></button>
               </a>
 
@@ -40,6 +40,7 @@ Posts
                       <th>Body</th>
                       <th>Image</th>
                       <th>Category</th>
+                      <th>Publish Date</th>
                       <th>Created_at</th>
                       <th>Updated_at</th>
                       <th>Edit</th>
@@ -58,10 +59,11 @@ Posts
                           <img src="{{ URL::to('/') }}/images/{{$record->image}}" style="max-height: 280px; max-width: 500px;">
                       </a></td>
                       <td>{{$record->category->name}}</td>
+                      <td>{{$record->publish_date}}</td>
                       <td>{{$record->created_at}}</td>
                       <td>{{$record->updated_at}}</td>
                       <td class="text-center">
-                        <a href="{{url(route('post.edit', $record->id))}}" class="btn btn-info btn-xs"><i class="fas fa-edit"></i></a>
+                        <a href="{{url(route('posts.edit', $record->id))}}" class="btn btn-info btn-xs"><i class="fas fa-edit"></i></a>
                       </td>
                       <td class="text-center">
                         {!! Form::open([
@@ -75,7 +77,7 @@ Posts
 
                       </td>
                       <td>
-                         <a href="{{url(route('post.show', $record->id))}}" class="btn btn-warning btn-xs"><i class="fas fa-list"></i></a>
+                         <a href="{{url(route('posts.show', $record->id))}}" class="btn btn-warning btn-xs"><i class="fas fa-list"></i></a>
                       </td>
                   </tr>       
                   @endforeach

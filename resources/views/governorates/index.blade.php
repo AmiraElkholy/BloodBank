@@ -24,7 +24,7 @@ Governorates
               @include('flash::message')
 
               
-              <a href="{{url(route('governorate.create'))}}">
+              <a href="{{url(route('governorates.create'))}}">
                 <button type="button" class="btn btn-success" style="float: right; font-weight:bold;">Add   <i class="fas fa-plus"></i></button>
               </a>
 
@@ -53,7 +53,7 @@ Governorates
                       <td>{{$governorate->created_at}}</td>
                       <td>{{$governorate->updated_at}}</td>
                       <td class="text-center">
-                        <a href="{{url(route('governorate.edit', $governorate->id))}}" class="btn btn-info btn-xs"><i class="fas fa-edit"></i></a>
+                        <a href="{{url(route('governorates.edit', $governorate->id))}}" class="btn btn-info btn-xs"><i class="fas fa-edit"></i></a>
                       </td>
                       <td class="text-center">
                         {!! Form::open([
@@ -67,7 +67,7 @@ Governorates
 
                       </td>
                       <td>
-                         <a href="{{url(route('governorate.show', $governorate->id))}}" class="btn btn-warning btn-xs"><i class="fas fa-list"></i></a>
+                         <a href="{{url(route('governorates.show', $governorate->id))}}" class="btn btn-warning btn-xs"><i class="fas fa-list"></i></a>
                       </td>
                   </tr>       
                   @endforeach

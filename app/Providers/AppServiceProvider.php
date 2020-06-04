@@ -10,6 +10,8 @@ use Illuminate\Support\ServiceProvider;
 use Validator;
 
 
+use App\Models\Setting;
+
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -32,12 +34,15 @@ class AppServiceProvider extends ServiceProvider
     {
 
 
-        //custom vaalidation for phone numbers
+        //custom validation for phone numbers
         // Validator::extend('phone_number', function($attribute, $value, $parameters)
         // {
         //     return substr($value, 0, 2) == '01';
         // });
 
+
+        $settings = Setting::first();
+        view()->share(compact('settings'));
 
         
     }

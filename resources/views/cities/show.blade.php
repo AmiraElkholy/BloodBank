@@ -45,7 +45,7 @@ Cities
                       <td>{{$city->created_at}}</td>
                       <td>{{$city->updated_at}}</td>
                       <td class="text-center">
-                        <a href="{{url(route('city.edit', $city->id))}}" class="btn btn-info btn-xs"><i class="fas fa-edit"></i></a>
+                        <a href="{{url(route('cities.edit', $city->id))}}" class="btn btn-info btn-xs"><i class="fas fa-edit"></i></a>
                       </td>
                       <td class="text-center">
                         {!! Form::open([

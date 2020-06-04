@@ -52,7 +52,7 @@ class GovernorateController extends Controller
 
         flash()->success('New governorate is saved successfully.');
 
-        return redirect(route('governorate.index'));
+        return redirect(route('governorates.index'));
     }
 
     /**
@@ -89,7 +89,7 @@ class GovernorateController extends Controller
     public function update(Request $request, $id)
     {
         $rules = [
-            'name' => 'required|min:2'
+            'name' => 'required|min:2|unique:governorates,name,'.$id
         ];
 
         $this->validate($request, $rules);
@@ -100,7 +100,7 @@ class GovernorateController extends Controller
 
         flash()->success('Governorate is updated successfully');
 
-        return redirect(route('governorate.index'));
+        return redirect(route('governorates.index'));
 
         // return back();
     }
@@ -121,6 +121,6 @@ class GovernorateController extends Controller
             $governorate->delete();
             flash()->warning('Governorate deleted successfully.');
         }
-        return redirect(route('governorate.index'));
+        return redirect(route('governorates.index'));
     }
 }

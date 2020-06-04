@@ -43,7 +43,7 @@ class ClientController extends Controller
         $client->is_activated = !($client->is_activated);
         $client->update();
         flash()->success('Client is activated/de-activated successfully!');
-        return redirect(route('client.index'));
+        return redirect(route('clients.index'));
     }
 
 
@@ -59,13 +59,12 @@ class ClientController extends Controller
         //can't delete if client has added donation requests
         if($record->donationRequests()->count()) {
             flash()->error("Client can't be deleted, there are related donation requests!");
-            return redirect(route('client.index'));
+            return redirect(route('clients.index'));
         }
         else {
            //Client can be deleted / start transaction
             try {        
                 DB::beginTransaction();
-
                 //1. delete favourite posts from 'clientable' table
                 //2. delete bloodTypes client has subscribed to get notifications about from 'clientable' table
                 //3. delete governorates client has subscribed to get notifications about from 'clientable' table
@@ -89,7 +88,7 @@ class ClientController extends Controller
         }
 
         flash()->warning('Client has been successfully deleted.');
-        return redirect(route('client.index'));    
+        return redirect(route('clients.index'));    
     }
 
 

@@ -75,12 +75,20 @@ class SettingController extends Controller
         $rules = [
             'notification_settings_text' => 'required|min:10',
             'about_app_text' => 'required|min:10',
+            'about_app_text_2' => 'required|min:10',
+            'about_app_text_3' => 'required|min:10',
             'phone' => 'required|regex:/(01)[0-9]{9}/|size:11',
             'email' => 'required|email',
             'fb_link' => 'required|url',
             'tw_link' => 'required|url',
             'insta_link' => 'required|url',
             'youtube_link' => 'required|url',
+            'whats_number' => 'required|regex:/[0-9 ]+/',
+            'whats_link' => 'required|url',
+            'intro_text' => 'required|min:10',
+            'mobile_app_text' => 'required|min:10',
+            'g_play_link' => 'required|url',
+            'apple_store_link' => 'required|url',
         ];
 
         $this->validate($request, $rules);
@@ -91,7 +99,7 @@ class SettingController extends Controller
 
         flash()->success('Settings have been updated successfully');
 
-        return redirect(route('setting.index'));
+        return redirect(route('settings.index'));
     }
 
     /**

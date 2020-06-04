@@ -62,7 +62,7 @@ Contact Messages
                         {!! Form::close() !!}
                       </td>
                       <!-- <td>
-                         <a href="{{url(route('contact-message.show', $record->id))}}" class="btn btn-warning btn-xs"><i class="fas fa-list"></i></a>
+                         <a href="{{url(route('contact-messages.show', $record->id))}}" class="btn btn-warning btn-xs"><i class="fas fa-list"></i></a>
                       </td> -->
                   </tr>       
                   @endforeach

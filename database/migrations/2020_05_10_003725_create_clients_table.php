@@ -23,6 +23,7 @@ class CreateClientsTable extends Migration {
 			$table->string('pin_code')->unique()->nullable();
 			$table->string('api_token', 60)->unique()->nullable();
 			$table->boolean('is_activated')->default(1);
+            $table->rememberToken();
 		});
 	}
 

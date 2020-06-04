@@ -6,9 +6,22 @@ use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
+
+use Zizaco\Entrust\Traits\EntrustUserTrait;
+
+
 class User extends Authenticatable
 {
     use Notifiable;
+
+    use EntrustUserTrait; // add this trait to your user model
+
+
+    protected $table = 'users';
+
+
+    protected $guard = 'web';
+
 
     /**
      * The attributes that are mass assignable.
@@ -36,4 +49,19 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function setPasswordAttribute($value) {
+        $this->attributes['password'] = bcrypt($value);
+    }
+
+
+    public function roles() {
+        return $this->belongsToMany('App\Role');
+    }
+
+
+    public function getRolesListAttribute() {
+        return $this->roles()->pluck('id')->toArray();
+    }
+
 }
