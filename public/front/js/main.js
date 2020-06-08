@@ -4,15 +4,7 @@ $(window).ready(function () {
 	$('.loading-page').fadeOut(400);
 	$('body').css('overflow', 'auto');
 
-	$('.heart-icon').click(function() {
-		var icon = $(this).find('i');
-
-		if ($(icon).hasClass('fas')) {
-			$(icon).removeClass('fas').addClass('far');
-		} else {
-			$(icon).removeClass('far').addClass('fas');
-		};
-	});
+	
 
 	//event when scroll top
 	$(window).scroll(function () {

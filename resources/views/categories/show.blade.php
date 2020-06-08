@@ -46,14 +46,13 @@ Categories
                         <a href="{{url(route('categories.edit', $record->id))}}" class="btn btn-info btn-xs"><i class="fas fa-edit"></i></a>
                       </td>
                       <td class="text-center">
-                        {!! Form::open([
-                              'action' => ['CategoryController@destroy', $record->id],
-                              'method' => 'delete'
-                          ]) !!}
-                        <button type="submit" class="btn btn-danger btn-xs">
-                          <i class="fas fa-trash"></i>
-                        </button> 
-                        {!! Form::close() !!}
+                        
+                        <!-- Button HTML (to Trigger Modal) -->
+                        <a href="#myModal" data-toggle="modal">
+                          <button type="submit" class="btn btn-danger btn-xs">
+                            <i class="fas fa-trash"></i>
+                          </button> 
+                        </a>
 
                       </td>
                   </tr>  
@@ -74,3 +73,6 @@ Categories
     <!-- /.content -->
 
 @endsection
+
+
+@include('categories.modal')

@@ -166,6 +166,7 @@ class UserController extends Controller
        
         $record = User::findOrFail($id);
 
+
         try {
             DB::beginTransaction();            
 

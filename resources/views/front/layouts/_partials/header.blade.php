@@ -17,7 +17,30 @@
     <link rel="stylesheet" href="{{asset('front/css/style.css')}}">
     <style type="text/css">
         select {
-            padding-bottom: 0px !important;
+            padding-bottom: 8px !important;
+        }
+        select:required:invalid {
+          color: gray;
+        }
+        option[value=""][disabled] {
+          display: none;
+        }
+        option {
+          color: black;
+        }  
+        .category-name {
+            font-size: 80% !important;
+        }
+        #profileTable {
+            border-collapse: collapse;
+            width: 100%;
+        }
+        #profileTable tr {
+            border-bottom: 1px solid #ccc;
+        }
+        #profileTable td {
+            padding-bottom: 12px;
+            padding-top: 12px;
         }
     </style>
     <title>بنك الدم</title>
@@ -56,22 +79,31 @@
                         </ul>
                     </div>
                     <div class="connect">
+                        @if(Auth::guard('client-web')->check())
                         <div class="dropdown">
                             <a class="dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown"
                                 aria-haspopup="true" aria-expanded="false">
-                                <span> مرحبا بك </span> &nbsp; &nbsp;أحمد محمد
+                                <span> مرحبا بك </span> &nbsp; &nbsp;{{Auth::guard('client-web')->user()->name}} 
                             </a>
                             <div class="dropdown-menu text-right" aria-labelledby="dropdownMenuButton">
-                                <a class="dropdown-item" href="index.html"> <i class="fas fa-home ml-2"></i>الرئيسيه</a>
-                                <a class="dropdown-item" href="#"> <i class="fas fa-user-alt ml-2"></i>معلوماتى</a>
+                                <a class="dropdown-item" href="{{route('home')}}"> <i class="fas fa-home ml-2"></i>الرئيسية</a>
+                                <a class="dropdown-item" href="{{url('/donation-requests/create')}}" style="color: #ab0b0e;"> <i style="color: #da1c23;" class="fas fa-tint ml-2"></i>إنشاء طلب تبرع</a>
+                                <a class="dropdown-item" href="{{route('profile')}}"> <i class="fas fa-user-alt ml-2"></i>معلوماتى</a>
                                 <a class="dropdown-item" href="#"> <i class="fas fa-bell ml-2"></i>اعدادات الاشعارات</a>
-                                <a class="dropdown-item" href="#"> <i class="far fa-heart ml-2"></i>المفضلة</a>
+                                <a class="dropdown-item" href="{{route('favourites')}}"> <i class="far fa-heart ml-2"></i>المفضلة</a>
                                 <a class="dropdown-item" href="#"> <i class="far fa-comments ml-2"></i>ابلاغ</a>
-                                <a class="dropdown-item" href="contact.html"> <i class="fas fa-phone ml-2"></i>تواصل
+                                <a class="dropdown-item" href="{{route('contact')}}"> <i class="fas fa-phone ml-2"></i>تواصل
                                     معنا</a>
-                                <a class="dropdown-item" href="#"> <i class="fas fa-sign-out-alt ml-2"></i>خروج</a>
+
+                                <a class="dropdown-item" href="{{ route('clientsLogout') }}" onclick="
+                                event.preventDefault();
+                                    document.getElementById('logout-form').submit();"> <i class="fas fa-sign-out-alt ml-2"></i>خروج</a>
+                                <form id="logout-form" action="{{ url(route('clientsLogout')) }}" method="POST" style="display: none;">
+                                    {{ csrf_field() }}
+                                </form>
                             </div>
                         </div>
+                        @endif
                     </div>
                 </div>
                 <!--End row-->
@@ -82,7 +114,7 @@
         <!--navbar-->
         <nav class="navbar navbar-expand-lg navbar-light">
             <div class="container">
-                <a class="navbar-brand" href="#"><img src="{{asset('front/imgs/logo.png')}}" alt=""></a>
+                <a class="navbar-brand" href="{{route('home')}}"><img src="{{asset('front/imgs/logo.png')}}" alt=""></a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse"
                     data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
                     aria-label="Toggle navigation">
@@ -91,25 +123,27 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav">
                         <li class="nav-item active">
-                            <a class="nav-link" href="index.html">الرئيسيه <span class="sr-only">(current)</span></a>
+                            <a class="nav-link" href="{{route('home')}}">الرئيسية <span class="sr-only">(current)</span></a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="#">عن بنك الدم</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="article-details.html">المقالات</a>
+                            <a class="nav-link" href="{{url('/posts')}}">المقالات</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="donation.html">طلبات التبرع</a>
+                            <a class="nav-link" href="{{url('/donation-requests')}}">طلبات التبرع</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="about-us.html">من نحن</a>
+                            <a class="nav-link" href="{{route('about')}}">من نحن</a>
                         </li>
                         <li class="nav-item cont">
-                            <a class="nav-link" href="contact.html">اتصل بنا</a>
+                            <a class="nav-link" href="{{route('contact')}}">اتصل بنا</a>
                         </li>
-                        <li class="mr-lg-auto"><a class="signin" href="signup.html">انشاء حساب جديد</a></li>
-                        <li class="pr-3"><a class="btn bg" href="signin.html">الدخول</a></li>
+                        @if(! Auth::guard('client-web')->user())
+                        <li class="mr-lg-auto"><a class="signin" href="{{route('clientsRegister')}}">انشاء حساب جديد</a></li>
+                        <li class="pr-3"><a class="btn bg" href="{{route('clientsLogin')}}">الدخول</a></li>
+                        @endif
                     </ul>
                 </div>
             </div>

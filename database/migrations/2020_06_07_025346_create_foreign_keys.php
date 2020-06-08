@@ -23,17 +23,17 @@ class CreateForeignKeys extends Migration {
 						->onDelete('restrict')
 						->onUpdate('restrict');
 		});
-		Schema::table('donation-requests', function(Blueprint $table) {
+		Schema::table('donation_requests', function(Blueprint $table) {
 			$table->foreign('blood_type_id')->references('id')->on('blood_types')
 						->onDelete('restrict')
 						->onUpdate('restrict');
 		});
-		Schema::table('donation-requests', function(Blueprint $table) {
+		Schema::table('donation_requests', function(Blueprint $table) {
 			$table->foreign('city_id')->references('id')->on('cities')
 						->onDelete('restrict')
 						->onUpdate('restrict');
 		});
-		Schema::table('donation-requests', function(Blueprint $table) {
+		Schema::table('donation_requests', function(Blueprint $table) {
 			$table->foreign('client_id')->references('id')->on('clients')
 						->onDelete('restrict')
 						->onUpdate('restrict');
@@ -44,6 +44,11 @@ class CreateForeignKeys extends Migration {
 						->onUpdate('restrict');
 		});
 		Schema::table('clientables', function(Blueprint $table) {
+			$table->foreign('client_id')->references('id')->on('clients')
+						->onDelete('restrict')
+						->onUpdate('restrict');
+		});
+		Schema::table('notification_tokens', function(Blueprint $table) {
 			$table->foreign('client_id')->references('id')->on('clients')
 						->onDelete('restrict')
 						->onUpdate('restrict');
@@ -62,19 +67,22 @@ class CreateForeignKeys extends Migration {
 			$table->dropForeign('posts_category_id_foreign');
 		});
 		Schema::table('donation_requests', function(Blueprint $table) {
-			$table->dropForeign('donation-requests_blood_type_id_foreign');
+			$table->dropForeign('donation_requests_blood_type_id_foreign');
 		});
 		Schema::table('donation_requests', function(Blueprint $table) {
-			$table->dropForeign('donation-requests_city_id_foreign');
+			$table->dropForeign('donation_requests_city_id_foreign');
 		});
 		Schema::table('donation_requests', function(Blueprint $table) {
-			$table->dropForeign('donation-requests_client_id_foreign');
+			$table->dropForeign('donation_requests_client_id_foreign');
 		});
 		Schema::table('notifications', function(Blueprint $table) {
 			$table->dropForeign('notifications_donation_request_id_foreign');
 		});
 		Schema::table('clientables', function(Blueprint $table) {
 			$table->dropForeign('clientables_client_id_foreign');
+		});
+		Schema::table('notification_tokens', function(Blueprint $table) {
+			$table->dropForeign('notification_tokens_client_id_foreign');
 		});
 	}
 }

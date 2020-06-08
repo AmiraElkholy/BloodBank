@@ -28,7 +28,7 @@ class AuthController extends Controller
     
 
     public function register(Request $request) {
-
+        
     	//Y-n-j date format example:  1991-1-1
     	//Y-m-d date format example:  1991-01-01
     	$rules = [

@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 use URL;
 
-use Carbon;
+use Carbon\Carbon;
 
 class Post extends Model 
 {
@@ -15,7 +15,7 @@ class Post extends Model
     public $timestamps = true;
     protected $fillable = array('title', 'body', 'image', 'category_id', 'publish_date');
     //for api
-    protected $appends = array('full_thumbnail_path', 'is_favourite');
+    protected $appends = array('full_thumbnail_path', 'is_favourite', 'is_published');
 
 
 
@@ -49,5 +49,8 @@ class Post extends Model
         return auth()->user()->posts->contains($this);
     }
 
+    public function getIsPublishedAttribute() {
+        return Carbon::parse($this->attributes['publish_date'])->lessThanOrEqualTo(Carbon::now());
+    }
 
 }

@@ -9,9 +9,7 @@ class CreateClientsTable extends Migration {
 	{
 		Schema::create('clients', function(Blueprint $table) {
 			$table->increments('id');
-			// $table->timestamps();
-			$table->timestamp('created_at')->useCurrent();
-            $table->timestamp('updated_at')->default(DB::raw('CURRENT_TIMESTAMP on update CURRENT_TIMESTAMP'));
+			$table->timestamps();
 			$table->string('phone')->unique();
 			$table->string('password');
 			$table->string('name');
@@ -22,8 +20,8 @@ class CreateClientsTable extends Migration {
 			$table->integer('city_id');
 			$table->string('pin_code')->unique()->nullable();
 			$table->string('api_token', 60)->unique()->nullable();
-			$table->boolean('is_activated')->default(1);
-            $table->rememberToken();
+			$table->boolean('is_activated');
+			$table->string('remember_token', 100)->nullable();
 		});
 	}
 

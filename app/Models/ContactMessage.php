@@ -9,6 +9,6 @@ class ContactMessage extends Model
 
     protected $table = 'contact_messages';
     public $timestamps = true;
-    protected $fillable = array('name', 'phone', 'subject', 'body');
+    protected $fillable = array('name', 'phone', 'subject', 'body', 'email');
 
 }

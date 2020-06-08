@@ -11,6 +11,7 @@ use Validator;
 
 
 use App\Models\Setting;
+use App\Models\BloodType;
 
 
 class AppServiceProvider extends ServiceProvider
@@ -42,7 +43,10 @@ class AppServiceProvider extends ServiceProvider
 
 
         $settings = Setting::first();
-        view()->share(compact('settings'));
+        $blood__types = BloodType::all();
+        view()->share(compact('settings', 'blood__types'));
+
+
 
         
     }

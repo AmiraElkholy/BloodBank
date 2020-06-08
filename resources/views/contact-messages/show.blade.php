@@ -48,14 +48,13 @@ Contact Message Details
                       <td>{{$record->created_at}}</td>
                       <td>{{$record->updated_at}}</td>
                       <td class="text-center">
-                        {!! Form::open([
-                              'action' => ['ContactMessageController@destroy', $record->id],
-                              'method' => 'delete'
-                          ]) !!}
-                        <button type="submit" class="btn btn-danger btn-xs">
-                          <i class="fas fa-trash"></i>
-                        </button> 
-                        {!! Form::close() !!}
+                        
+                        <!-- Button HTML (to Trigger Modal) -->
+                        <a href="#myModal" data-toggle="modal">
+                          <button type="submit" class="btn btn-danger btn-xs">
+                            <i class="fas fa-trash"></i>
+                          </button> 
+                        </a>
 
                       </td>
                   </tr>  
@@ -76,3 +75,6 @@ Contact Message Details
     <!-- /.content -->
 
 @endsection
+
+
+@include('categories.modal')

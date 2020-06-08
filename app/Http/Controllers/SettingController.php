@@ -89,6 +89,9 @@ class SettingController extends Controller
             'mobile_app_text' => 'required|min:10',
             'g_play_link' => 'required|url',
             'apple_store_link' => 'required|url',
+            'about_us_text' => 'required|min:10',
+            'fax_number' => 'regex:/[0-9 ]+/',
+            'footer_text' => 'required|min:10',
         ];
 
         $this->validate($request, $rules);

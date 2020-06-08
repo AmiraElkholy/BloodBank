@@ -9,8 +9,7 @@ class CreateBloodTypesTable extends Migration {
 	{
 		Schema::create('blood_types', function(Blueprint $table) {
 			$table->increments('id');
-			$table->timestamp('created_at')->useCurrent();
-            $table->timestamp('updated_at')->default(DB::raw('CURRENT_TIMESTAMP on update CURRENT_TIMESTAMP'));
+			$table->timestamps();
 			$table->string('name');
 		});
 	}

@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+use Auth;
+
+
 class HomeController extends Controller
 {
     /**
@@ -25,4 +28,13 @@ class HomeController extends Controller
     {
         return view('dashboard');
     }
+
+
+
+    public function logout() {
+        Auth::guard('web')->logout();
+        return redirect(route('adminHome'));
+    }
+
+
 }

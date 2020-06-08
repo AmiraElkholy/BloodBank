@@ -65,14 +65,17 @@ Donation Request Details
                       </td>
                       <td>{{$record->created_at}}</td>
                       <td class="text-center">
+                        
                         {!! Form::open([
-                              'action' => ['DonationRequestController@destroy', $record->id],
+                              'action' => ['GovernorateController@destroy', $governorate->id],
                               'method' => 'delete'
                           ]) !!}
                         <button type="submit" class="btn btn-danger btn-xs">
                           <i class="fas fa-trash"></i>
                         </button> 
                         {!! Form::close() !!}
+
+                                                
                       </td>
                   </tr>  
               </table> 

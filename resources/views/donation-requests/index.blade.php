@@ -69,14 +69,16 @@ Donation Requests
                       </td>
                       <td>{{$record->created_at}}</td>
                       <td class="text-center">
+                        
                         {!! Form::open([
-                              'action' => ['DonationRequestController@destroy', $record->id],
+                              'action' => ['GovernorateController@destroy', $governorate->id],
                               'method' => 'delete'
                           ]) !!}
                         <button type="submit" class="btn btn-danger btn-xs">
                           <i class="fas fa-trash"></i>
                         </button> 
                         {!! Form::close() !!}
+
                       </td>
                       <td>
                          <a href="{{url(route('donation-requests.show', $record->id))}}" class="btn btn-warning btn-xs"><i class="fas fa-list"></i></a>

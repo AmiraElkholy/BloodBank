@@ -66,14 +66,14 @@ Users <i class="fas fa-users-cog"></i>
                         <a href="{{url(route('users.edit', $record->id))}}" class="btn btn-info btn-xs"><i class="fas fa-edit"></i></a>
                       </td>
                       <td class="text-center">
-                        {!! Form::open([
-                              'action' => ['UserController@destroy', $record->id],
-                              'method' => 'delete'
-                          ]) !!}
-                        <button type="submit" class="btn btn-danger btn-xs">
-                          <i class="fas fa-trash"></i>
-                        </button> 
-                        {!! Form::close() !!}
+                        
+                        <!-- Button HTML (to Trigger Modal) -->
+                        <a href="#myModal" data-toggle="modal">
+                          <button type="submit" class="btn btn-danger btn-xs">
+                            <i class="fas fa-trash"></i>
+                          </button> 
+                        </a>
+
                       </td>
                       <td>
                          <a href="{{url(route('users.show', $record->id))}}" class="btn btn-warning btn-xs"><i class="fas fa-list"></i></a>
@@ -94,3 +94,6 @@ Users <i class="fas fa-users-cog"></i>
     <!-- /.content -->
 
 @endsection
+
+
+@include('categories.modal')

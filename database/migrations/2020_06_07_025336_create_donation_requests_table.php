@@ -9,8 +9,7 @@ class CreateDonationRequestsTable extends Migration {
 	{
 		Schema::create('donation_requests', function(Blueprint $table) {
 			$table->increments('id');
-			$table->timestamp('created_at')->useCurrent();
-            $table->timestamp('updated_at')->default(DB::raw('CURRENT_TIMESTAMP on update CURRENT_TIMESTAMP'));
+			$table->timestamps();
 			$table->string('patient_name');
 			$table->string('patient_phone');
 			$table->integer('patient_age');
@@ -19,9 +18,9 @@ class CreateDonationRequestsTable extends Migration {
 			$table->string('hospital_name');
 			$table->integer('city_id')->unsigned();
 			$table->text('hospital_address');
-			$table->text('notes')->nullable();
-			$table->decimal('latitude', 10,8);
-			$table->decimal('longitude', 11,8);
+			$table->text('notes');
+			$table->decimal('latitude', 10,8)->nullable();
+			$table->decimal('longitude', 11,8)->nullable();
 			$table->integer('client_id')->unsigned();
 		});
 	}

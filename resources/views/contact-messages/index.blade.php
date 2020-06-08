@@ -52,14 +52,14 @@ Contact Messages
                       <td>{{$record->created_at}}</td>
                       <td>{{$record->updated_at}}</td>
                       <td class="text-center">
-                        {!! Form::open([
-                              'action' => ['ContactMessageController@destroy', $record->id],
-                              'method' => 'delete'
-                          ]) !!}
-                        <button type="submit" class="btn btn-danger btn-xs">
-                          <i class="fas fa-trash"></i>
-                        </button> 
-                        {!! Form::close() !!}
+                        
+                        <!-- Button HTML (to Trigger Modal) -->
+                        <a href="#myModal" data-toggle="modal">
+                          <button type="submit" class="btn btn-danger btn-xs">
+                            <i class="fas fa-trash"></i>
+                          </button> 
+                        </a>
+
                       </td>
                       <!-- <td>
                          <a href="{{url(route('contact-messages.show', $record->id))}}" class="btn btn-warning btn-xs"><i class="fas fa-list"></i></a>
@@ -80,3 +80,6 @@ Contact Messages
     <!-- /.content -->
 
 @endsection
+
+
+@include('categories.modal')

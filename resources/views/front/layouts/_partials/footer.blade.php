@@ -6,21 +6,16 @@
                     <div class="col-md-4  offset-1">
                         <img src="{{asset('front/imgs/logo.png')}}" alt="">
                         <h5 class="my-3">بنك الدم</h5>
-                        <p class="pl-4"> هذا النص هو مثال لنص ممكن أن يستبدل فى نفس المساحه, لقد تم توليد
-                            هذا النص من مولد النص العرب حيث يمكنك ان تولد هذا النص أو
-                            العديد من النصوص الأخرى وإضافة الى زيادة عدد الحروف التى يولدها التطبيق يطلع على صورة حقيقة
-                            لتطبيق
-                            الموقع
-                        </p>
+                        <p class="pl-4">{{$settings->footer_text}}</p>
                     </div>
                     <div class="col-md-3">
-                        <h6 class="">الرئيسية</h6>
+                        <a href="{{route('home')}}" style="text-decoration: none;"><h6>الرئيسية</h6></a>
                         <ul class="list-unstyled">
                             <li class="py-2"><a href="">عن بنك الدم</a></li>
-                            <li class="py-2"><a href="article-details.html">المقالات</a></li>
-                            <li class="py-2"><a href="donation.html">عن التبرع</a></li>
-                            <li class="py-2"><a href="about-us.html">من نحن</a></li>
-                            <li class="py-2"><a href="contact.html">اتصل بنا</a></li>
+                            <li class="py-2"><a href="{{url('/posts')}}">المقالات</a></li>
+                            <li class="py-2"><a href="{{url('donation-requests')}}">عن التبرع</a></li>
+                            <li class="py-2"><a href="{{route('about')}}">من نحن</a></li>
+                            <li class="py-2"><a href="{{route('contact')}}">اتصل بنا</a></li>
                         </ul>
                     </div>
                     <div class="col-md-4 available">
@@ -49,7 +44,7 @@
                         </ul>
                     </div>
                     <div class="col-md-4">
-                        <p class="text-center">جميع الحقوق محفوظه لـ <span>بنك الدم</span> &copy; 2019</p>
+                        <p class="text-center">جميع الحقوق محفوظه لـ <a href="{{route('home')}}"><span>بنك الدم</span></a> &copy; 2019</p>
                     </div>
                 </div>
             </div>

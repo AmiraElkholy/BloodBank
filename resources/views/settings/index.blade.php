@@ -32,6 +32,7 @@ Site Settings
                   <th>About App Text</th>
                   <th>About App Text 2</th>
                   <th>About App Text 3</th>
+                  <th>About Us Text</th>
                   <th>Phone</th>
                   <th>Email</th>
                   <th>fb link</th>
@@ -44,6 +45,8 @@ Site Settings
                   <th>Mobile App Text</th>
                   <th>Google Play Link</th>
                   <th>Apple Store Link</th>
+                  <th>Fax Number</th>
+                  <th>Footer Text</th>
                   <th>Edit</th>
                 </tr>
                 </thead>
@@ -54,6 +57,7 @@ Site Settings
                       <td>{{$record->about_app_text}}</td>
                       <td>{{$record->about_app_text_2}}</td>
                       <td>{{$record->about_app_text_3}}</td>
+                      <td>{{$record->about_us_text}}</td>
                       <td>{{$record->phone}}</td>
                       <td>{{$record->email}}</td>
                       <td>{{$record->fb_link}}</td>
@@ -66,6 +70,8 @@ Site Settings
                       <td>{{$record->mobile_app_text}}</td>
                       <td>{{$record->g_play_link}}</td>
                       <td>{{$record->apple_store_link}}</td>
+                      <td>{{$record->fax_number}}</td>
+                      <td>{{$record->footer_text}}</td>
                       <td class="text-center">
                         <a href="{{url(route('settings.edit', $record->id))}}" class="btn btn-info btn-xs"><i class="fas fa-edit"></i></a>
                       </td>

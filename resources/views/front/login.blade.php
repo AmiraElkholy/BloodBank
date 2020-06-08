@@ -28,14 +28,14 @@
                        تذكرنى
                     </label>
                 </div>
-                <div class="float-left my-4"><a href=""><i class="fas fa-exclamation-triangle px-2"></i><span>هل نسيت كلمة المرور</span></a></div>
+                <div class="float-left my-4"><a href="{{route('clientsResetPage')}}"><i class="fas fa-exclamation-triangle px-2"></i><span>هل نسيت كلمة المرور</span></a></div>
                 <div class="clr"></div>
                 <div class="form-row my-4">
                     <div class="col">
                         <button type="submit" class="form-control py-3 bg-success text-white">دخول</button>
                     </div>
                     <div class="col">
-                        <a href="signup.html" type="submit" class="form-control text-center py-3 bg">انشاء حساب جديد</a>
+                        <a href="{{route('clientsRegister')}}" type="submit" class="form-control text-center py-3 bg">انشاء حساب جديد</a>
                     </div>
                 </div>
             </form>

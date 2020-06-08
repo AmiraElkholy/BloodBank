@@ -64,14 +64,14 @@ Clients
                         <a href="{{url(route('clients.toggleActivation', $record->id))}}" class="btn btn-info btn-xs"><i class="fas fa-edit"></i></a>
                       </td>
                       <td class="text-center">
-                        {!! Form::open([
-                              'action' => ['ClientController@destroy', $record->id],
-                              'method' => 'delete'
-                          ]) !!}
-                        <button type="submit" class="btn btn-danger btn-xs">
-                          <i class="fas fa-trash"></i>
-                        </button> 
-                        {!! Form::close() !!}
+                        
+                        <!-- Button HTML (to Trigger Modal) -->
+                        <a href="#myModal" data-toggle="modal">
+                          <button type="submit" class="btn btn-danger btn-xs">
+                            <i class="fas fa-trash"></i>
+                          </button> 
+                        </a>
+                        
                       </td>
                       <td>
                          <a href="{{url(route('clients.show', $record->id))}}" class="btn btn-warning btn-xs"><i class="fas fa-list"></i></a>
@@ -92,3 +92,7 @@ Clients
     <!-- /.content -->
 
 @endsection
+
+
+
+@include('categories.modal')

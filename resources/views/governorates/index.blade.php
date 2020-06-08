@@ -56,14 +56,13 @@ Governorates
                         <a href="{{url(route('governorates.edit', $governorate->id))}}" class="btn btn-info btn-xs"><i class="fas fa-edit"></i></a>
                       </td>
                       <td class="text-center">
-                        {!! Form::open([
-                              'action' => ['GovernorateController@destroy', $governorate->id],
-                              'method' => 'delete'
-                          ]) !!}
-                        <button type="submit" class="btn btn-danger btn-xs">
-                          <i class="fas fa-trash"></i>
-                        </button> 
-                        {!! Form::close() !!}
+                        
+                        <!-- Button HTML (to Trigger Modal) -->
+                        <a href="#myModal" data-toggle="modal">
+                          <button type="submit" class="btn btn-danger btn-xs">
+                            <i class="fas fa-trash"></i>
+                          </button> 
+                        </a>
 
                       </td>
                       <td>
@@ -85,3 +84,6 @@ Governorates
     <!-- /.content -->
 
 @endsection
+
+
+@include('categories.modal')

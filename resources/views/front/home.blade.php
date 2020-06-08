@@ -67,11 +67,10 @@
                 </div>
                 <div class="slick2">                   
                     @foreach($posts as $post)  
-                    
                     <div class="slick-cont">
                         <div class="card">
                             <img src="{{$post->full_thumbnail_path}}" class="card-img-top" alt="slick-img">
-                            <div class="heart-icon"><i class="far fa-heart"></i></div>
+                            <div class="heart-icon" id="{{$post->id}}"><i class="fa-heart {{($post->is_favourite)? 'fas':'far'}}" ></i></div>
                             <div class="card-body">
                                 <h5 class="card-title">{{$post->title}}</h5>
                                 <p>{{$post->body}}</p>
@@ -88,27 +87,33 @@
         <!--End container-->
     </section>
     <!--End Articles-->
+    <br>
     <!--Donation-->
     <section class="donation">
         <h2 class="text-center"><span class="py-1">طلبات التبرع</span> </h2>
         <hr />
         <div class="donation-request py-5">
             <div class="container">
+                <form method="POST" action="{{url('donation-requests')}}">
+                    {{csrf_field()}}
                 <div class="selection w-75 d-flex mx-auto my-4">
-                    <select class="custom-select">
-                        <option selected>اختر فصيلة الدم</option>
-                        @foreach($blood_types as $blood_type)
+                    <select class="custom-select" name="blood_type_id">
+                        <option selected value="">اختر فصيلة الدم</option>
+                        @foreach($blood__types as $blood_type)
                         	<option value="{{$blood_type->id}}">{{$blood_type->name}}</option>
                         @endforeach
                     </select>
-                    <select class="custom-select mx-md-3 mx-sm-1">
-                        <option selected>اختر المدينة</option>
+                    <select class="custom-select mx-md-3 mx-sm-1" name="city_id">
+                        <option selected value="">اختر المدينة</option>
                         @foreach($cities as $city)
                         	<option value="{{$city->id}}">{{$city->name}}</option>
                         @endforeach
                     </select>
-                    <div><i class="fas fa-search"></i></div>
+                    <div>
+                        <button type="submit" style="border:none; background-color: #F5F5F5;"><i class="fas fa-search"></i></button></a>
+                    </div>
                 </div>
+                </form>
                 <!--End selection-->
                 <div id="donations">
                 	
@@ -164,4 +169,48 @@
         <!--End container-->
     </section>
     <!--End blood-app-->
+
+
 @endsection
+
+
+
+@push('scripts')
+
+    <script type="text/javascript">
+        
+        $('.heart-icon').click(function() { 
+            var post_id = $(this).attr('id');
+            var icon = $(this).find('i');
+
+            console.log(post_id);
+
+            $.ajax({
+                url : '{{url(route('toggleFavouritesWeb'))}}',
+                type: 'POST',
+                data: {
+                    _token  : '{{csrf_token()}}',
+                    post_id : post_id,
+                },
+                success: function(data) {
+                    console.log(data);
+
+                    if(data.status ==1) {
+                        if ($(icon).hasClass('fas')) {
+                            $(icon).removeClass('fas').addClass('far');
+                        } else {
+                            $(icon).removeClass('far').addClass('fas');
+                        };
+                    }
+                   
+                },
+                error: function(jqXHR, textStatus, errorMessage) {
+                    alert(errorMessage);
+                }
+            });
+
+        });
+
+    </script>
+
+@endpush

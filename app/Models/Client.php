@@ -14,9 +14,20 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Laravel\Passport\HasApiTokens;
 
 
+use Carbon\Carbon;
+
+use App\Notifications\ClientResetPasswordNotification;
+
+
 class Client extends Authenticatable {
 
     use Notifiable;
+
+
+    public function sendPasswordResetNotification($token)
+    {
+        $this->notify(new ClientResetPasswordNotification($token));
+    }
 
 
     protected $table = 'clients';
@@ -91,5 +102,17 @@ class Client extends Authenticatable {
     public function setPasswordAttribute($value) {
         $this->attributes['password'] = bcrypt($value);
     }
+
+
+    //Accessors
+    public function getDateOfBirthAttribute($value) {
+        return Carbon::parse($value)->format('Y-n-j');
+    }
+
+
+    public function getLastDonationDateAttribute($value) {
+        return Carbon::parse($value)->format('Y-n-j');
+    }
+
 
 }

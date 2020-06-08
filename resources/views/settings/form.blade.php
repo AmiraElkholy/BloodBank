@@ -16,7 +16,7 @@
 
 
           <div class="form-group">
-            <label for="about_app_text">About App Text 2: </label>
+            <label for="about_app_text_2">About App Text 2: </label>
             {!! Form::textarea('about_app_text_2', null, [
                 'class' => 'form-control'
             ])  !!}
@@ -24,8 +24,15 @@
 
 
           <div class="form-group">
-            <label for="about_app_text">About App Text 3: </label>
+            <label for="about_app_text_3">About App Text 3: </label>
             {!! Form::textarea('about_app_text_3', null, [
+                'class' => 'form-control'
+            ])  !!}
+          </div>
+
+          <div class="form-group">
+            <label for="about_us_text">About Us Text: </label>
+            {!! Form::textarea('about_us_text', null, [
                 'class' => 'form-control'
             ])  !!}
           </div>
@@ -115,6 +122,22 @@
                 'class' => 'form-control'
             ])  !!}
           </div>          
+
+
+          <div class="form-group">
+            <label for="fax_numbe">Fax Number: </label>
+            {!! Form::text('fax_number', null, [
+                'class' => 'form-control'
+            ])  !!}
+          </div>    
+
+
+          <div class="form-group">
+            <label for="footer_text">Footer Text: </label>
+            {!! Form::textarea('footer_text', null, [
+                'class' => 'form-control'
+            ])  !!}
+          </div>
 
 
          <div class="form-group">
