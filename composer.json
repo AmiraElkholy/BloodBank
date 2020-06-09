@@ -16,6 +16,7 @@
         "laravel/passport": "7.5.1",
         "laravel/tinker": "^1.0",
         "laravelcollective/html": "^5.2.0",
+        "symfony/dotenv": "^5.1",
         "zizaco/entrust": "dev-master#6a0fd8c3b73037b4855c6c4eaf1060788c0df1e9"
     },
     "require-dev": {
