@@ -15,7 +15,7 @@
       </div>
       <div class="modal-footer">
         {!! Form::open([
-            'action' => ['CategoryController@destroy', $record->id],
+            'action' => ['PostController@destroy', $record->id],
             'method' => 'delete'
         ]) !!}
         <button type="button" class="btn btn-info" data-dismiss="modal">Cancel</button>
