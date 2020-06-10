@@ -43,7 +43,7 @@ class UserController extends Controller
             return back();
         }
 
-        flash()->error('Old password credential does not match our records.');
+        flash()->error('Old password does not match our records.');
 
         return back();
     }
