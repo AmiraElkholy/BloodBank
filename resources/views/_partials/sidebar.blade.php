@@ -1,3 +1,5 @@
+
+
  <!-- Main Sidebar Container -->
   <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
@@ -6,6 +8,9 @@
       <span class="brand-text font-weight-light">BloodBank</span>
     </a>
 
+
+
+    @if(Auth::guard('web')->check())
     <!-- Sidebar -->
     <div class="sidebar">
       @if (Auth::user())
@@ -113,6 +118,10 @@
         </ul>
       </nav>
       <!-- /.sidebar-menu -->
+
+      @endif
+
     </div>
     <!-- /.sidebar -->
   </aside>
+
