@@ -85,4 +85,4 @@ Users
 @endsection
 
 
-@include('categories.modal')
+@include('users.modal')

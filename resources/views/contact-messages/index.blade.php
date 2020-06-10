@@ -82,4 +82,4 @@ Contact Messages
 @endsection
 
 
-@include('categories.modal')
+@include('contact-messages.modal')

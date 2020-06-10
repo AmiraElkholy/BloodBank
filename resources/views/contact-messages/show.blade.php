@@ -77,4 +77,4 @@ Contact Message Details
 @endsection
 
 
-@include('categories.modal')
+@include('contact-messages.modal')

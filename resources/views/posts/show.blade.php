@@ -86,4 +86,4 @@ Posts
 
 
 
-@include('categories.modal')
+@include('posts.modal')

@@ -95,4 +95,4 @@ Clients
 
 
 
-@include('categories.modal')
+@include('clients.modal')

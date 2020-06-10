@@ -88,4 +88,4 @@ Cities
 @endsection
 
 
-@include('categories.modal')
+@include('cities.modal')

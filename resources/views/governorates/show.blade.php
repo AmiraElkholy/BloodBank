@@ -75,4 +75,4 @@ Governorates
 @endsection
 
 
-@include('categories.modal')
+@include('governorates.modal')

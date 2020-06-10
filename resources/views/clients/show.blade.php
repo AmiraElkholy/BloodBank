@@ -90,4 +90,4 @@ Contacts
 
 
 
-@include('categories.modal')
+@include('clients.modal')

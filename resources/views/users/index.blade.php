@@ -96,4 +96,4 @@ Users <i class="fas fa-users-cog"></i>
 @endsection
 
 
-@include('categories.modal')
+@include('users.modal')

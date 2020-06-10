@@ -40,8 +40,12 @@ Roles
                   <th>Display Name</th>
                   <th>Description</th>
                   <th>Permissions</th>
+                  @if(Auth::guard('web')->user()->can('roles-edit'))
                   <th>Edit</th>
+                  @endif
+                  @if(Auth::guard('web')->user()->can('roles-delete'))
                   <th>Delete</th>
+                  @endif
                   <th>Show Details</th>
                 </tr>
                 </thead>
@@ -60,19 +64,21 @@ Roles
                           @endforeach
                         </ul>
                       </td>
+                      @if(Auth::guard('web')->user()->can('roles-edit'))
                       <td class="text-center">
                         <a href="{{url(route('roles.edit', $record->id))}}" class="btn btn-info btn-xs"><i class="fas fa-edit"></i></a>
                       </td>
-                      <td class="text-center">
-                       
+                      @endif
+                      @if(Auth::guard('web')->user()->can('roles-delete'))
+                      <td class="text-center">       
                         <!-- Button HTML (to Trigger Modal) -->
                         <a href="#myModal" data-toggle="modal">
                           <button type="submit" class="btn btn-danger btn-xs">
                             <i class="fas fa-trash"></i>
                           </button> 
                         </a>
-
                       </td>
+                      @endif
                       <td>
                          <a href="{{url(route('roles.show', $record->id))}}" class="btn btn-warning btn-xs"><i class="fas fa-list"></i></a>
                       </td>
@@ -94,4 +100,4 @@ Roles
 @endsection
 
 
-@include('categories.modal')
+@include('roles.modal')
