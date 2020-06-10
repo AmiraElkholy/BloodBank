@@ -1,6 +1,14 @@
 @extends('front.layouts.master')
 
 
+
+@section('page_title')
+المفضلة
+@endsection
+
+
+
+
 @section('content')
 
  <div class="container">
@@ -8,7 +16,7 @@
         <nav class="my-5" aria-label="breadcrumb">
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="{{url(route('home'))}}">الرئيسية</a></li>
-                <li class="breadcrumb-item" active aria-current="page">المفضلة</li>
+                <li class="breadcrumb-item" active aria-current="page">@yield('page_title')</li>
             </ol>
         </nav><!--End Breadcrumb-->
     </div><!--End container-->

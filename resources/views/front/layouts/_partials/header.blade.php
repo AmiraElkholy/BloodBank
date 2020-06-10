@@ -43,7 +43,7 @@
             padding-top: 12px;
         }
     </style>
-    <title>بنك الدم</title>
+    <title>بنك الدم | @yield('page_title')</title>
 </head>
 
 <body>
@@ -111,6 +111,9 @@
             <!--End container-->
         </div>
         <!--End top-bar-->
+        @php
+            $page_title = trim(app()->view->getSections()['page_title']);
+        @endphp
         <!--navbar-->
         <nav class="navbar navbar-expand-lg navbar-light">
             <div class="container">
@@ -122,22 +125,22 @@
                 </button>
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav">
-                        <li class="nav-item active">
+                        <li class="nav-item {{($page_title=='الرئيسية') ? 'active' : ''}}">
                             <a class="nav-link" href="{{route('home')}}">الرئيسية <span class="sr-only">(current)</span></a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">عن بنك الدم</a>
+                            <a class="nav-link" href="#about">عن بنك الدم</a>
                         </li>
-                        <li class="nav-item">
+                        <li class="nav-item {{($page_title=='المقالات') ? 'active' : ''}}">
                             <a class="nav-link" href="{{url('/posts')}}">المقالات</a>
                         </li>
-                        <li class="nav-item">
+                        <li class="nav-item {{($page_title=='طلبات التبرع') ? 'active' : ''}}">
                             <a class="nav-link" href="{{url('/donation-requests')}}">طلبات التبرع</a>
                         </li>
-                        <li class="nav-item">
+                        <li class="nav-item {{($page_title=='من نحن') ? 'active' : ''}}">
                             <a class="nav-link" href="{{route('about')}}">من نحن</a>
                         </li>
-                        <li class="nav-item cont">
+                        <li class="nav-item cont {{($page_title=='اتصل بنا') ? 'active' : ''}}">
                             <a class="nav-link" href="{{route('contact')}}">اتصل بنا</a>
                         </li>
                         @if(! Auth::guard('client-web')->user())

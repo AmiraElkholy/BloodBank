@@ -33,9 +33,8 @@
 
           <div class="form-group">
             <label for="publish_date">Publish Date: </label>
-            {!! Form::date('publish_date', null, [
-                'class' => 'form-control'
-            ])  !!}
+            <input type="date" name="publish_date" value="{{$record ? \Carbon\Carbon::createFromDate($record->publish_date)->format('Y-m-d') : ''}}" class="form-control">
+            
           </div>
 
 

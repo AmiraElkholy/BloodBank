@@ -1,5 +1,10 @@
-
 @extends('front.layouts.master')
+
+
+@section('page_title')
+تعديل بيانات الحساب
+@endsection
+
 
 
 
@@ -9,7 +14,7 @@
             <nav class="my-4" aria-label="breadcrumb">
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item"><a href="{{route('home')}}">الرئيسية</a></li>
-                    <li class="breadcrumb-item active" aria-current="page">انشاء حساب جديد</li>
+                    <li class="breadcrumb-item active" aria-current="page">@yield('page_title')</li>
                 </ol>
             </nav><!--End Breadcrumb-->
         </div><!--End container-->

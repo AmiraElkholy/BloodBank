@@ -1,5 +1,3 @@
-  
-
   @include('_partials.header')
 
  

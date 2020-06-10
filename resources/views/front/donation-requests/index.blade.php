@@ -1,6 +1,10 @@
 @extends('front.layouts.master')
 
 
+@section('page_title')
+طلبات التبرع
+@endsection
+
 
 @section('content')
 
@@ -9,7 +13,7 @@
         <nav class="my-5" aria-label="breadcrumb">
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="{{route('home')}}">الرئيسية</a></li>
-                <li class="breadcrumb-item active" aria-current="page">طلبات التبرع</li>
+                <li class="breadcrumb-item active" aria-current="page">@yield('page_title')</li>
             </ol>
         </nav>
     </div><!--End container-->

@@ -1,6 +1,11 @@
 @extends('front.layouts.master')
 
 
+@section('page_title')
+المقالات
+@endsection
+
+
 @section('content')
 
  <div class="container">

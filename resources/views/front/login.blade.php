@@ -1,5 +1,9 @@
-
 @extends('front.layouts.master')
+
+
+@section('page_title')
+تسجيل الدخول
+@endsection
 
 
 @section('content')
@@ -8,7 +12,7 @@
         <nav class="my-5" aria-label="breadcrumb">
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="{{route('home')}}">الرئيسية</a></li>
-                <li class="breadcrumb-item active" aria-current="page">تسجيل الدخول</li>
+                <li class="breadcrumb-item active" aria-current="page">@yield('page_title')</li>
             </ol>
         </nav><!--End Breadcrumb-->
         <section class="signup-form my-4 py-4">

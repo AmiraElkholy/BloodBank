@@ -1,6 +1,8 @@
 @extends('front.layouts.master')
 
-
+@section('page_title')
+طلبات التبرع
+@endsection
 
 @section('content')
 

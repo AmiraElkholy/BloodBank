@@ -1,6 +1,12 @@
 @extends('front.layouts.master')
 
 
+@section('page_title')
+المقالات
+@endsection
+
+
+
 @section('content')
 
 
@@ -10,7 +16,7 @@
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="{{url(route('home'))}}">الرئيسيه</a></li>
                 <li class="breadcrumb-item"><a href="{{url('/posts')}}">المقالات</a></li>
-                <li class="breadcrumb-item active" aria-current="page">الوقاية من الأمراض</li>
+                <li class="breadcrumb-item active" aria-current="page">{{$post->title}}</li>
             </ol>
         </nav><!--End Breadcrumb-->
     </div><!--End container-->

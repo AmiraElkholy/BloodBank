@@ -1,5 +1,9 @@
 @extends('front.layouts.master')
 
+@section('page_title')
+الرئيسية
+@endsection
+
 
 @section('content')
 
@@ -38,7 +42,7 @@
     <section class="about py-5">
         <div class="container">
             <div class="about-cont py-3">
-                <p class="pl-4"><span> بنك الدم</span> {{$settings->intro_text}}
+                <p id="about" class="pl-4"><span> بنك الدم</span> {{$settings->intro_text}}
                 </p>
             </div>
         </div>

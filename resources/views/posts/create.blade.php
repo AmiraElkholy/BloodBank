@@ -1,4 +1,4 @@
-@inject('model', 'App\Models\Post')
+@inject('record', 'App\Models\Post')
 
 
 @extends('layouts.app')
@@ -26,7 +26,7 @@ New Post
           @include('_partials.errors')
         
 
-           {!! Form::model($model, [
+           {!! Form::model($record, [
             'action' => 'PostController@store',
             'files'  =>  true
           ])!!}

@@ -1,7 +1,11 @@
-
+@extends('front.layouts.master')
 @inject('model', 'App\Models\DonationRequest')
 
-@extends('front.layouts.master')
+
+@section('page_title')
+طلبات التبرع
+@endsection
+
 
 
 
@@ -11,6 +15,7 @@
             <nav class="my-4" aria-label="breadcrumb">
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item"><a href="{{route('home')}}">الرئيسية</a></li>
+                    <li class="breadcrumb-item"><a href="{{url('/donation-requests')}}">طلبات التبرع</a></li>
                     <li class="breadcrumb-item active" aria-current="page">انشاء طلب تبرع جديد</li>
                 </ol>
             </nav><!--End Breadcrumb-->

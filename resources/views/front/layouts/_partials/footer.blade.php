@@ -11,7 +11,7 @@
                     <div class="col-md-3">
                         <a href="{{route('home')}}" style="text-decoration: none;"><h6>الرئيسية</h6></a>
                         <ul class="list-unstyled">
-                            <li class="py-2"><a href="">عن بنك الدم</a></li>
+                            <li class="py-2"><a href="#about">عن بنك الدم</a></li>
                             <li class="py-2"><a href="{{url('/posts')}}">المقالات</a></li>
                             <li class="py-2"><a href="{{url('donation-requests')}}">عن التبرع</a></li>
                             <li class="py-2"><a href="{{route('about')}}">من نحن</a></li>
