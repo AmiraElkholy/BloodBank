@@ -46,10 +46,10 @@ return [
         'mysql' => [
             'driver' => 'mysql',
             'url' => env('DATABASE_URL'),
-            'host' => '127.0.0.1',
+            'host' => 'db4free.net',
             'port' => '3306',
-            'database' => 'bloodbank',
-            'username' => 'username',
+            'database' => 'amirakhbloodbank',
+            'username' => 'amirakhusername',
             'password' => 'password_Bloodbank1',
             'unix_socket' => env('DB_SOCKET', ''),
             'charset' => 'utf8mb4',
