@@ -77,7 +77,7 @@
                             <div class="heart-icon" id="{{$post->id}}"><i class="fa-heart {{($post->is_favourite)? 'fas':'far'}}" ></i></div>
                             <div class="card-body">
                                 <h5 class="card-title">{{$post->title}}</h5>
-                                <p>{{substrwords($post->body)}}</p>
+                                <p>{{substrwords($post->body, 500)}}</p>
                                 <div class="text-center"><a href="{{url('posts/'.$post->id)}}" class="btn bg px-5">التفاصيل</a>
                                 </div>
                             </div>
