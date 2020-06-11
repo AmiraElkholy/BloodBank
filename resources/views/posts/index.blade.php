@@ -67,12 +67,11 @@ Posts
                       </td>
                       <td class="text-center">
                         
+                        
                         <!-- Button HTML (to Trigger Modal) -->
-                        <a href="#myModal" data-toggle="modal">
-                          <button type="submit" class="btn btn-danger btn-xs">
+                        <button type="button" class="btn btn-danger btn-xs" id="{{$record->id}}" data-toggle="modal" data-target="#myModal">
                             <i class="fas fa-trash"></i>
-                          </button> 
-                        </a>
+                        </button>
 
                       </td>
                       <td>

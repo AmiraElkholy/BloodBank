@@ -111,8 +111,9 @@ class GovernorateController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request)
     {
+        $id = $request->id;
         $governorate = Governorate::findOrFail($id);
         if($governorate->cities()->count()) {
             flash()->error("Governorate can't be deleted. There are related cities.");

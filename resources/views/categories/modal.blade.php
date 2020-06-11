@@ -14,13 +14,13 @@
         <p>Do you really want to delete these records? This process cannot be undone.</p>
       </div>
       <div class="modal-footer">
-        {!! Form::open([
-            'action' => ['CategoryController@destroy', $record->id],
-            'method' => 'delete'
-        ]) !!}
-        <button type="button" class="btn btn-info" data-dismiss="modal">Cancel</button>
-        <button type="submit" class="btn btn-danger">Delete</button>
-        {!! Form::close() !!}
+        <form action="{{route('categories.destroy', 'test')}}" method="post">
+            {{method_field('delete')}}
+            {{csrf_field()}}
+            <input type="hidden" name="id" id="id" value="">
+            <button type="button" class="btn btn-info" data-dismiss="modal">Cancel</button>
+            <button id="modalDeleteBtn" type="submit" class="btn btn-danger">Delete</button>
+        </form>g
       </div>
     </div>
   </div>

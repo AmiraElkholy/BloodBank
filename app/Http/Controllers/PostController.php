@@ -161,8 +161,9 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request)
     {
+        $id = $request->id;
         $record = Post::findOrFail($id);
         $record->delete();
         flash()->warning('Post has been successfully deleted.');

@@ -122,11 +122,17 @@ class CityController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request)
     {
+        $id = $request->id;
         $city = City::findOrFail($id);
-        $city->delete();
-        flash()->warning('City deleted successfully.');
+         if($city->donationRequests()->count()) {
+            flash()->error("City can't be deleted. There are related donation requests.");
+        }
+        else {
+            $city->delete();
+            flash()->warning('City deleted successfully.');
+        }        
         return redirect(route('cities.index'));
     }
 }

@@ -86,8 +86,9 @@ class DonationRequestController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request)
     {
+        $id = $request->id;
         $record = DonationRequest::findOrFail($id);
 
         //delete all notifications related to this donation request 

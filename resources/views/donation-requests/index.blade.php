@@ -70,14 +70,10 @@ Donation Requests
                       <td>{{$record->created_at}}</td>
                       <td class="text-center">
                         
-                        {!! Form::open([
-                              'action' => ['GovernorateController@destroy', $governorate->id],
-                              'method' => 'delete'
-                          ]) !!}
-                        <button type="submit" class="btn btn-danger btn-xs">
-                          <i class="fas fa-trash"></i>
+                        <!-- Button HTML (to Trigger Modal) -->
+                        <button type="button" class="btn btn-danger btn-xs" id="{{$record->id}}" data-toggle="modal" data-target="#myModal">
+                            <i class="fas fa-trash"></i>
                         </button> 
-                        {!! Form::close() !!}
 
                       </td>
                       <td>
@@ -99,3 +95,6 @@ Donation Requests
     <!-- /.content -->
 
 @endsection
+
+
+@include('donation-requests.modal')

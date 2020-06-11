@@ -34,25 +34,7 @@
 <!-- AdminLTE for demo purposes -->
 <script src="{{asset('adminlte/js/demo.js')}}"></script>
 <!-- page script -->
-<script>
-  $(function () {
-    $("#example1").DataTable({
-      "responsive": true,
-      "autoWidth": false,
-      "scrollX": true, 
-    });
-    $('#example2').DataTable({
-      "paging": false,
-      "lengthChange": false,
-      "searching": false,
-      "ordering": false,
-      "info": true,
-      "autoWidth": false,
-      "responsive": true,
-      "scrollX": true,
-    });
-  });
-</script>
+<script src="{{asset('js/admin.js')}}"></script>
 
 @stack('scripts')
 

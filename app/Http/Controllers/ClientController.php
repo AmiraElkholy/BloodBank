@@ -53,8 +53,9 @@ class ClientController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request)
     {
+        $id = $request->id;
         $record = Client::findOrFail($id);
         //can't delete if client has added donation requests
         if($record->donationRequests()->count()) {

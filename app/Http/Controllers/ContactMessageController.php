@@ -81,8 +81,9 @@ class ContactMessageController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request)
     {
+        $id = $request->id;
         $record = ContactMessage::findOrFail($id);
         $record->delete();
         flash()->warning('Contact message has been successfully deleted.');

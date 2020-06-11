@@ -14,7 +14,7 @@
         <p>Do you really want to delete these records? This process cannot be undone.</p>
       </div>
       <div class="modal-footer">
-         <form action="{{route('clients.destroy', 'test')}}" method="post">
+         <form action="{{route('donation-requests.destroy', 'test')}}" method="post">
             {{method_field('delete')}}
             {{csrf_field()}}
             <input type="hidden" name="id" id="id" value="">
