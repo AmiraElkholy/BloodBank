@@ -23,6 +23,7 @@ class CreateClientsTable extends Migration {
 			$table->string('api_token', 60)->unique()->nullable();
 			$table->boolean('is_activated');
 			$table->string('remember_token', 100)->nullable();
+            $table->rememberToken();
 		});
 	}
 
