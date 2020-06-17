@@ -9,7 +9,8 @@ class CreateDonationRequestsTable extends Migration {
 	{
 		Schema::create('donation_requests', function(Blueprint $table) {
 			$table->increments('id');
-			$table->timestamps();
+			$table->timestamp('created_at')->useCurrent();
+            $table->timestamp('updated_at')->default(DB::raw('CURRENT_TIMESTAMP on update CURRENT_TIMESTAMP'));
 			$table->string('patient_name');
 			$table->string('patient_phone');
 			$table->integer('patient_age');

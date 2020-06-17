@@ -9,7 +9,8 @@ class CreateSettingsTable extends Migration {
 	{
 		Schema::create('settings', function(Blueprint $table) {
 			$table->increments('id');
-			$table->timestamps();
+			$table->timestamp('created_at')->useCurrent();
+            $table->timestamp('updated_at')->default(DB::raw('CURRENT_TIMESTAMP on update CURRENT_TIMESTAMP'));
 			$table->mediumText('notification_settings_text');
 			$table->mediumText('about_app_text');
 			$table->mediumText('about_app_text_2');

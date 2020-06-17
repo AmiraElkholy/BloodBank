@@ -9,7 +9,8 @@ class CreateNotificationsTable extends Migration {
 	{
 		Schema::create('notifications', function(Blueprint $table) {
 			$table->increments('id');
-			$table->timestamps();
+			$table->timestamp('created_at')->useCurrent();
+            $table->timestamp('updated_at')->default(DB::raw('CURRENT_TIMESTAMP on update CURRENT_TIMESTAMP'));
 			$table->string('title');
 			$table->text('content')->nullable();
 			$table->integer('donation_request_id')->unsigned();

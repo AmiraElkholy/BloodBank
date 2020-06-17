@@ -9,7 +9,8 @@ class CreateClientsTable extends Migration {
 	{
 		Schema::create('clients', function(Blueprint $table) {
 			$table->increments('id');
-			$table->timestamps();
+			$table->timestamp('created_at')->useCurrent();
+            $table->timestamp('updated_at')->default(DB::raw('CURRENT_TIMESTAMP on update CURRENT_TIMESTAMP'));
 			$table->string('phone')->unique();
 			$table->string('password');
 			$table->string('name');
